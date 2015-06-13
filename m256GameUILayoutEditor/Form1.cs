@@ -19,7 +19,7 @@ namespace m256GameUILayoutEditor
     public partial class Form1 : Form
     {
         const string APPLI_NAME = "m256 Game UI Layout Editor";
-        const string VER = "0.0.1";
+        const string VER = "0.0.2";
         const string INIT_TITLE = "untitled";
 
         private string docTitle = INIT_TITLE;
@@ -199,7 +199,7 @@ namespace m256GameUILayoutEditor
         // フォームのタイトルを変更
         private void setFormTitle()
         {
-            this.Text = docTitle + " - " + APPLI_NAME;
+            this.Text = string.Format("{0} - {1} {2}", docTitle, APPLI_NAME, VER);
         }
 
         private void openLayoutToolStripMenuItem_Click(object sender, EventArgs e)
