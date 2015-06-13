@@ -40,7 +40,6 @@ namespace m256GameUILayoutEditor
         // グリッド描画用画像
         private Bitmap bgGrid = null;
         private Boolean bgGridRedraw = true;
-        private Boolean canvasReset = false;
 
         // マウスドラッグ処理検知用
         private Boolean buttonPressed = false;
@@ -229,7 +228,6 @@ namespace m256GameUILayoutEditor
             string s = System.IO.File.ReadAllText(openFilePath, enc);
 
             convJsonToLayoutdata(s);
-            canvasReset = true;
             bgGridRedraw = true;
             pictureBox1.Invalidate();
             setStatus();
@@ -1347,7 +1345,6 @@ namespace m256GameUILayoutEditor
                 gridH = h;
             }
 
-            canvasReset = true;
             bgGridRedraw = true;
             setStatus();
             pictureBox1.Invalidate();

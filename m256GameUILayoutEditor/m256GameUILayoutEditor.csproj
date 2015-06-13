@@ -212,6 +212,7 @@
     <None Include="ImageResource\CanvasElement_10701.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Release\" />
     <Folder Include="TestData\" />
   </ItemGroup>
   <ItemGroup>
