@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1697F880-E131-4FE0-AC41-EF22F65DD8F5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>m256GameUILayoutEditor</RootNamespace>
+    <AssemblyName>m256GameUILayoutEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>m256guledit2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddText.Designer.cs">
+      <DependentUpon>FormAddText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetCanvasSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetCanvasSize.Designer.cs">
+      <DependentUpon>FormSetCanvasSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetGridSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetGridSize.Designer.cs">
+      <DependentUpon>FormSetGridSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayoutData.cs" />
+    <Compile Include="LayoutObj.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddText.resx">
+      <DependentUpon>FormAddText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetCanvasSize.resx">
+      <DependentUpon>FormSetCanvasSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetGridSize.resx">
+      <DependentUpon>FormSetGridSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GotoFirstRow_287_rot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconOpen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\AddControl_371.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\align_bottom_on_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\align_left_on_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\align_right_on_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\align_top_on_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\AligntoGrid_7432.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\CenterInFormHorizontally_8502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\CenterInFormVertically_8503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\ExportReportData_10565.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GlyphDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GlyphUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GotoFirstRow_287.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GotoLastRow_288.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Image_12x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Image_24x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\ImageButton_735.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\letterform_Asans_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\NewFile_6276.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\NewImageType_252.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\NewTextAnnotation_5625.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Open_6529.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\refresh_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\resource_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Restart_6322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Save_6530.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\SaveFileDialogControl_703.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\TextBox_708.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\Zoom_5442.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\ZoomOut_12927.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\GotoLastRow_288_rot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImageResource\CanvasElement_10701.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="m256guledit.ico" />
+    <Content Include="m256guledit2.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

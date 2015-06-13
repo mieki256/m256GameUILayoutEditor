@@ -1,0 +1,134 @@
+---
+:canvas_w: 640
+:canvas_h: 480
+:objs:
+- :id: g_bg.jpg
+  :x: 0
+  :y: 0
+  :w: 640
+  :h: 480
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_bg.jpg
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_star.png
+  :x: 224
+  :y: 123
+  :w: 191
+  :h: 181
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_star.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_textexit.png
+  :x: 550
+  :y: 416
+  :w: 66
+  :h: 23
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textexit.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_textgamestart.png
+  :x: 416
+  :y: 224
+  :w: 200
+  :h: 23
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textgamestart.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_texthowtoplay.png
+  :x: 403
+  :y: 288
+  :w: 213
+  :h: 28
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_texthowtoplay.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_textmenu.png
+  :x: 524
+  :y: 160
+  :w: 92
+  :h: 23
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textmenu.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_textoption.png
+  :x: 504
+  :y: 352
+  :w: 112
+  :h: 28
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textoption.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_triangle.png
+  :x: 15
+  :y: 165
+  :w: 315
+  :h: 194
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_triangle.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_box.png
+  :x: 47
+  :y: 341
+  :w: 146
+  :h: 83
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_box.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :id: g_titlelogo.png
+  :x: 105
+  :y: 32
+  :w: 430
+  :h: 68
+  :type: 0
+  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_titlelogo.png
+  :fontname: 
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255

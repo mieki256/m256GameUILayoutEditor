@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="640"
+   height="480"
+   id="svg4136"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 640 480"
+   sodipodi:docname="test01.svg">
+  <defs
+     id="defs4138" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1651451"
+     inkscape:cx="289.76222"
+     inkscape:cy="284.51971"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     showgrid="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4684" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4141">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g_triangle"
+       inkscape:label="#g4762"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="translate(-23.17308,-18.023507)">
+      <title
+         id="title4778">triangle</title>
+      <path
+         style="fill:#0074d9;fill-rule:evenodd;stroke:#0074d9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 58.299147,241.16524 80.000003,-96 224,176 z"
+         id="path4760"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4758"
+         d="m 48,224 80,-96 224,176 z"
+         style="fill:#7fdbff;fill-rule:evenodd;stroke:#39cccc;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Enter Sansman';-inkscape-font-specification:'Enter Sansman Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0074d9;fill-opacity:1;stroke:#111111;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="68.992233"
+       y="295.36115"
+       id="g_textmenu"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4686"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4688"
+         x="68.992233"
+         y="295.36115">Menu</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Enter Sansman';-inkscape-font-specification:'Enter Sansman Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0074d9;fill-opacity:1;stroke:#111111;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="37.066753"
+       y="341.93524"
+       id="g_textgamestart"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4690"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4692"
+         x="37.066753"
+         y="341.93524">Game Start</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Enter Sansman';-inkscape-font-specification:'Enter Sansman Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0074d9;fill-opacity:1;stroke:#111111;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="82.686478"
+       y="376.98969"
+       id="g_textoption"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4694"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4696"
+         x="82.686478"
+         y="376.98969">Option</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Enter Sansman';-inkscape-font-specification:'Enter Sansman Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0074d9;fill-opacity:1;stroke:#111111;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="122.13125"
+       y="417.86487"
+       id="g_texthowtoplay"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4698"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4700"
+         x="122.13125"
+         y="417.86487">How to play</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Enter Sansman';-inkscape-font-specification:'Enter Sansman Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0074d9;fill-opacity:1;stroke:#111111;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="302.38095"
+       y="458.66882"
+       id="g_textexit"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text4702"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4704"
+         x="302.38095"
+         y="458.66882">Exit</tspan></text>
+    <g
+       id="g_star"
+       transform="translate(21.456555,51.495733)"
+       inkscape:label="#g4710"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <title
+         id="title4776">star</title>
+      <path
+         sodipodi:type="star"
+         style="opacity:1;fill:#ff851b;fill-opacity:1;stroke:none;stroke-width:15;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4708"
+         sodipodi:sides="5"
+         sodipodi:cx="483.32626"
+         sodipodi:cy="163.70213"
+         sodipodi:r1="90.509666"
+         sodipodi:r2="45.254833"
+         sodipodi:arg1="0.78539816"
+         sodipodi:arg2="1.4137167"
+         inkscape:flatsided="false"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m 547.32626,227.70213 -56.92058,-19.30233 -48.16994,35.94704 0.76817,-60.09944 -49.07299,-34.7041 57.39534,-17.84117 17.84117,-57.395339 34.7041,49.072989 60.09944,-0.76818 -35.94704,48.16995 z"
+         inkscape:transform-center-x="4.3753196"
+         inkscape:transform-center-y="-4.3753196" />
+      <path
+         inkscape:transform-center-y="-4.3753196"
+         inkscape:transform-center-x="4.3753196"
+         d="m 526.19858,216.79433 -56.92059,-19.30233 -48.16994,35.94703 0.76818,-60.09944 -49.07299,-34.70409 57.39534,-17.84117 17.84117,-57.395345 34.70409,49.072995 60.09944,-0.76818 -35.94703,48.16994 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="1.4137167"
+         sodipodi:arg1="0.78539816"
+         sodipodi:r2="45.254833"
+         sodipodi:r1="90.509666"
+         sodipodi:cy="152.79433"
+         sodipodi:cx="462.19858"
+         sodipodi:sides="5"
+         id="path4706"
+         style="opacity:1;fill:#ffdc00;fill-opacity:1;stroke:none;stroke-width:15;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="star" />
+    </g>
+    <g
+       id="g_titlelogo"
+       transform="translate(0.85826223,-37.763538)"
+       inkscape:label="#g4752"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <title
+         id="title4774">titlelogo</title>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4714"
+         y="124.85979"
+         x="104.8105"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#aaaaaa;fill-opacity:1;stroke:#aaaaaa;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:70px;font-family:'RaveParty Bold';-inkscape-font-specification:'RaveParty Bold, ';fill:#aaaaaa;stroke:#aaaaaa;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="124.85979"
+           x="104.8105"
+           id="tspan4716"
+           sodipodi:role="line">TITLE LOGO</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#01ff70;fill-opacity:1;stroke:#111111;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="99.169205"
+         y="119.54278"
+         id="text4736"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4738"
+           x="99.169205"
+           y="119.54278"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:70px;font-family:'RaveParty Bold';-inkscape-font-specification:'RaveParty Bold, ';fill:#01ff70;stroke:#111111;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">TITLE LOGO</tspan></text>
+    </g>
+    <g
+       id="g_box"
+       inkscape:label="#g4770"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         style="opacity:1;fill:#001f3f;fill-opacity:1;stroke:#001f3f;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4768"
+         width="128"
+         height="64"
+         x="398.59045"
+         y="368.30698" />
+      <rect
+         y="352"
+         x="384"
+         height="64"
+         width="128"
+         id="rect4766"
+         style="opacity:1;fill:#0074d9;fill-opacity:1;stroke:#0074d9;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
