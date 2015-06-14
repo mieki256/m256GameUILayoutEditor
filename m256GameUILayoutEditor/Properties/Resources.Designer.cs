@@ -63,9 +63,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap AddControl_371 {
+        internal static System.Drawing.Bitmap icon_00 {
             get {
-                object obj = ResourceManager.GetObject("AddControl_371", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_00", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap align_bottom_on_16x16 {
+        internal static System.Drawing.Bitmap icon_01 {
             get {
-                object obj = ResourceManager.GetObject("align_bottom_on_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap align_left_on_16x16 {
+        internal static System.Drawing.Bitmap icon_02 {
             get {
-                object obj = ResourceManager.GetObject("align_left_on_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_02", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap align_right_on_16x16 {
+        internal static System.Drawing.Bitmap icon_03 {
             get {
-                object obj = ResourceManager.GetObject("align_right_on_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_03", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap align_top_on_16x16 {
+        internal static System.Drawing.Bitmap icon_04 {
             get {
-                object obj = ResourceManager.GetObject("align_top_on_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_04", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap AligntoGrid_7432 {
+        internal static System.Drawing.Bitmap icon_05 {
             get {
-                object obj = ResourceManager.GetObject("AligntoGrid_7432", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_05", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap CanvasElement_10701 {
+        internal static System.Drawing.Bitmap icon_06 {
             get {
-                object obj = ResourceManager.GetObject("CanvasElement_10701", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_06", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap CenterInFormHorizontally_8502 {
+        internal static System.Drawing.Bitmap icon_07 {
             get {
-                object obj = ResourceManager.GetObject("CenterInFormHorizontally_8502", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_07", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap CenterInFormVertically_8503 {
+        internal static System.Drawing.Bitmap icon_08 {
             get {
-                object obj = ResourceManager.GetObject("CenterInFormVertically_8503", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_08", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ExportReportData_10565 {
+        internal static System.Drawing.Bitmap icon_09 {
             get {
-                object obj = ResourceManager.GetObject("ExportReportData_10565", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_09", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GlyphDown {
+        internal static System.Drawing.Bitmap icon_10 {
             get {
-                object obj = ResourceManager.GetObject("GlyphDown", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_10", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GlyphUp {
+        internal static System.Drawing.Bitmap icon_11 {
             get {
-                object obj = ResourceManager.GetObject("GlyphUp", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GotoFirstRow_287 {
+        internal static System.Drawing.Bitmap icon_12 {
             get {
-                object obj = ResourceManager.GetObject("GotoFirstRow_287", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_12", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GotoFirstRow_287_rot {
+        internal static System.Drawing.Bitmap icon_13 {
             get {
-                object obj = ResourceManager.GetObject("GotoFirstRow_287_rot", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +203,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GotoLastRow_288 {
+        internal static System.Drawing.Bitmap icon_14 {
             get {
-                object obj = ResourceManager.GetObject("GotoLastRow_288", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_14", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap GotoLastRow_288_rot {
+        internal static System.Drawing.Bitmap icon_15 {
             get {
-                object obj = ResourceManager.GetObject("GotoLastRow_288_rot", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_15", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Image_12x {
+        internal static System.Drawing.Bitmap icon_16 {
             get {
-                object obj = ResourceManager.GetObject("Image_12x", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +233,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Image_24x {
+        internal static System.Drawing.Bitmap icon_17 {
             get {
-                object obj = ResourceManager.GetObject("Image_24x", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_17", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap ImageButton_735 {
+        internal static System.Drawing.Bitmap icon_18 {
             get {
-                object obj = ResourceManager.GetObject("ImageButton_735", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_18", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +253,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap letterform_Asans_16xLG {
+        internal static System.Drawing.Bitmap icon_19 {
             get {
-                object obj = ResourceManager.GetObject("letterform_Asans_16xLG", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_19", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +263,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap NewFile_6276 {
+        internal static System.Drawing.Bitmap icon_20 {
             get {
-                object obj = ResourceManager.GetObject("NewFile_6276", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +273,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap NewImageType_252 {
+        internal static System.Drawing.Bitmap icon_21 {
             get {
-                object obj = ResourceManager.GetObject("NewImageType_252", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +283,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap NewTextAnnotation_5625 {
+        internal static System.Drawing.Bitmap icon_22 {
             get {
-                object obj = ResourceManager.GetObject("NewTextAnnotation_5625", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_22", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +293,9 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Open_6529 {
+        internal static System.Drawing.Bitmap m256gule {
             get {
-                object obj = ResourceManager.GetObject("Open_6529", resourceCulture);
+                object obj = ResourceManager.GetObject("m256gule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,80 +303,40 @@ namespace m256GameUILayoutEditor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_16xLG {
+        internal static System.Drawing.Bitmap m256gule_toobar_base {
             get {
-                object obj = ResourceManager.GetObject("refresh_16xLG", resourceCulture);
+                object obj = ResourceManager.GetObject("m256gule_toobar_base", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        ///   型 System.Byte[] のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap resource_16xLG {
+        internal static byte[] m256gule1 {
             get {
-                object obj = ResourceManager.GetObject("resource_16xLG", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("m256gule1", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Restart_6322 {
+        internal static System.Drawing.Icon m256guledit {
             get {
-                object obj = ResourceManager.GetObject("Restart_6322", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("m256guledit", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Save_6530 {
+        internal static System.Drawing.Icon m256guledit2 {
             get {
-                object obj = ResourceManager.GetObject("Save_6530", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap SaveFileDialogControl_703 {
-            get {
-                object obj = ResourceManager.GetObject("SaveFileDialogControl_703", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap TextBox_708 {
-            get {
-                object obj = ResourceManager.GetObject("TextBox_708", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap Zoom_5442 {
-            get {
-                object obj = ResourceManager.GetObject("Zoom_5442", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
-        internal static System.Drawing.Bitmap ZoomOut_12927 {
-            get {
-                object obj = ResourceManager.GetObject("ZoomOut_12927", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("m256guledit2", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

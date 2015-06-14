@@ -12,16 +12,19 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Diagnostics;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace m256GameUILayoutEditor
 {
 
     public partial class Form1 : Form
     {
-        const string APPLI_NAME = "m256 Game UI Layout Editor";
-        const string VER = "0.0.2";
         const string INIT_TITLE = "untitled";
 
+        private string appliName = "";
+        private string myVer = "";
         private string docTitle = INIT_TITLE;
         private string saveFilePath = "";
 
@@ -195,10 +198,52 @@ namespace m256GameUILayoutEditor
             images.RemoveRange(0, images.Count);
         }
 
+        // 自分自身のアプリ名を返す
+        private string getAppliName()
+        {
+            if (appliName == "")
+            {
+                //var assm = Assembly.GetExecutingAssembly();
+                //var name = assm.GetName();
+                //appliName = name.Name.ToString();
+
+                //Console.WriteLine("{0} {1}", Application.ProductName, Application.ProductVersion);
+                appliName = Application.ProductName.ToString();
+            }
+            return appliName;
+        }
+
+        // 自分自身のバージョンを返す
+        private string getMyVer()
+        {
+            if (myVer == "")
+            {
+                //System.Diagnostics.FileVersionInfo ver =
+                //    System.Diagnostics.FileVersionInfo.GetVersionInfo(
+                //    System.Reflection.Assembly.GetExecutingAssembly().Location);
+                //myVer = ver.ToString();
+
+                //var assm = Assembly.GetExecutingAssembly();
+                //var name = assm.GetName();
+                //Console.WriteLine("{0} {1}", name.Name, name.Version);
+                //appliName = name.Name.ToString();
+                //myVer = name.Version.ToString();
+
+                //var assm = Assembly.GetExecutingAssembly();
+                //var path = (new Uri(assm.CodeBase)).LocalPath;
+                //var versionInfo = FileVersionInfo.GetVersionInfo(path);
+                //Console.WriteLine("{0} {1}", versionInfo.FileName, versionInfo.FileVersion);
+                //myVer = versionInfo.FileVersion.ToString();
+
+                myVer = Application.ProductVersion.ToString();
+            }
+            return myVer;
+        }
+
         // フォームのタイトルを変更
         private void setFormTitle()
         {
-            this.Text = string.Format("{0} - {1} {2}", docTitle, APPLI_NAME, VER);
+            this.Text = string.Format("{0} - {1} {2}", docTitle, getAppliName(), getMyVer());
         }
 
         private void openLayoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -455,7 +500,7 @@ namespace m256GameUILayoutEditor
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                APPLI_NAME + Environment.NewLine + "Ver. " + VER,
+                getAppliName() + Environment.NewLine + "Ver. " + getMyVer(),
                 "About",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);

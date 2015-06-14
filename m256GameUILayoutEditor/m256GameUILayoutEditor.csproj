@@ -113,109 +113,41 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ImageResource\GotoFirstRow_287_rot.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\IconOpen.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\AddControl_371.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\align_bottom_on_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\align_left_on_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\align_right_on_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\align_top_on_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\AligntoGrid_7432.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\CenterInFormHorizontally_8502.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\CenterInFormVertically_8503.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\ExportReportData_10565.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\GlyphDown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\GlyphUp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\GotoFirstRow_287.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\GotoLastRow_288.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Image_12x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Image_24x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\ImageButton_735.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\letterform_Asans_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\NewFile_6276.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\NewImageType_252.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\NewTextAnnotation_5625.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Open_6529.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\refresh_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\resource_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Restart_6322.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Save_6530.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\SaveFileDialogControl_703.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\TextBox_708.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\Zoom_5442.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\ZoomOut_12927.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\GotoLastRow_288_rot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImageResource\CanvasElement_10701.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Release\" />
     <Folder Include="TestData\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="IconResource\icon_00.png" />
+    <None Include="IconResource\icon_01.png" />
+    <None Include="IconResource\icon_02.png" />
+    <None Include="IconResource\icon_03.png" />
+    <None Include="IconResource\icon_04.png" />
+    <None Include="IconResource\icon_05.png" />
+    <None Include="IconResource\icon_06.png" />
+    <None Include="IconResource\icon_07.png" />
+    <None Include="IconResource\icon_08.png" />
+    <None Include="IconResource\icon_09.png" />
+    <None Include="IconResource\icon_10.png" />
+    <None Include="IconResource\icon_11.png" />
+    <None Include="IconResource\icon_12.png" />
+    <None Include="IconResource\icon_13.png" />
+    <None Include="IconResource\icon_14.png" />
+    <None Include="IconResource\icon_15.png" />
+    <None Include="IconResource\icon_16.png" />
+    <None Include="IconResource\icon_17.png" />
+    <None Include="IconResource\icon_18.png" />
+    <None Include="IconResource\icon_19.png" />
+    <None Include="IconResource\icon_20.png" />
+    <None Include="IconResource\icon_21.png" />
+    <None Include="IconResource\icon_22.png" />
+    <None Include="IconResource\m256gule_toobar_base.png" />
+    <None Include="ImageResource\m256gule.png" />
+    <None Include="ImageResource\m256gule.svg" />
+    <None Include="ImageResource\m256guledit.ico" />
+    <None Include="ImageResource\m256guledit2.ico" />
     <Content Include="m256guledit.ico" />
     <Content Include="m256guledit2.ico" />
   </ItemGroup>
