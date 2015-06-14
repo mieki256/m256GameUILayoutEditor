@@ -489,9 +489,9 @@ namespace m256GameUILayoutEditor
             relativePath = relativePath.Replace("%25", "%");
             relativePath = relativePath.Replace('/', '\\');
 
-            Console.WriteLine(dir);
-            Console.WriteLine(path);
-            Console.WriteLine(" -> " + relativePath);
+            //Console.WriteLine(dir);
+            //Console.WriteLine(path);
+            //Console.WriteLine(" -> " + relativePath);
 
             return relativePath;
         }
@@ -516,9 +516,9 @@ namespace m256GameUILayoutEditor
 
             absolutePath = absolutePath.Replace("%25", "%");
 
-            Console.WriteLine(dir);
-            Console.WriteLine(path);
-            Console.WriteLine(" -> " + absolutePath);
+            //Console.WriteLine(dir);
+            //Console.WriteLine(path);
+            //Console.WriteLine(" -> " + absolutePath);
 
             return absolutePath;
         }
@@ -571,7 +571,7 @@ namespace m256GameUILayoutEditor
 
                     lines.Add(string.Format("- :type: {0}", o.type));
 
-                    lines.Add(string.Format("  :id: {0}", (o.name == "")? "\'\'" : o.name));
+                    lines.Add(string.Format("  :id: {0}", (o.name == "") ? "\'\'" : o.name));
                     lines.Add(string.Format("  :path: {0}", (path == "") ? "\'\'" : path));
                     lines.Add(string.Format("  :text: {0}", (o.text == "") ? "\'\'" : o.text));
 
