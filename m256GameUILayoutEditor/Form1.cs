@@ -639,7 +639,7 @@ namespace m256GameUILayoutEditor
         }
 
         // テキストオブジェクトを追加
-        // TODO テキストオブジェクトのサイズを正確に取得できるようにする
+        // テキストオブジェクトのサイズは PictureBox の paint 時に取得する
         private void addTextObj()
         {
             FormAddText f = new FormAddText();
@@ -789,6 +789,12 @@ namespace m256GameUILayoutEditor
                     Font fnt = new Font(o.fontName, size);
                     SolidBrush fb = new SolidBrush(o.fontColor);
                     g.DrawString(o.text, fnt, fb, px, py);
+
+                    SizeF textSize = new SizeF();
+                    textSize = g.MeasureString(o.text, fnt);
+                    o.w = (int)textSize.Width;
+                    o.h = (int)textSize.Height;
+
                     fb.Dispose();
                     fnt.Dispose();
                 }
