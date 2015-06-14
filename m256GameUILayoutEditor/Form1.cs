@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.IO;
 using System.Drawing.Imaging;
-using System.Diagnostics;
-using System.Reflection;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Windows.Forms;
 
 namespace m256GameUILayoutEditor
@@ -27,6 +18,7 @@ namespace m256GameUILayoutEditor
         private string myVer = "";
         private string docTitle = INIT_TITLE;
         private string saveFilePath = "";
+        private string saveDir = "";
 
         // キャンバスサイズ
         public int canvasW = 640;
@@ -65,9 +57,10 @@ namespace m256GameUILayoutEditor
         class ObjData
         {
             public int type; // 0ならImage, 1ならText
-            public String shortName;
-            public String longName;
-            public String fontName;
+            public string name;
+            public string path;
+            public string text;
+            public string fontName;
             public int fontSize;
             public int x;
             public int y;
@@ -81,40 +74,38 @@ namespace m256GameUILayoutEditor
             public Boolean buttonDowned;
 
             // コンストラクタ
-            public ObjData(int type, string str, int x, int y, string fontName, int fontSize, Color fontColor)
+            public ObjData(int type, string name, string path, string text,
+                int x, int y, string fontName, int fontSize, Color fontColor)
             {
                 this.type = type;
+                this.name = name;
+                this.path = path;
+                this.text = text;
+                this.x = x;
+                this.y = y;
+                this.fontName = fontName;
+                this.fontSize = fontSize;
+                this.fontColor = fontColor;
+
                 if (this.type == 0)
                 {
                     // Image
-                    this.longName = str;
-                    this.shortName = System.IO.Path.GetFileName(str);
-                    this.fontName = "";
-                    this.fontSize = 0;
-                    this.bitmap = new Bitmap(CreateImage(str));
+                    this.bitmap = new Bitmap(CreateImage(path));
                     this.w = this.bitmap.Width;
                     this.h = this.bitmap.Height;
-                    this.fontColor = Color.Blue;
                 }
                 else
                 {
                     // Text
-                    this.longName = str;
-                    this.shortName = str;
-                    this.fontName = fontName;
-                    this.fontSize = fontSize;
-                    this.bitmap = null;
-                    this.fontColor = fontColor;
 
                     // サイズ決定は仮
-                    this.w = fontSize * str.Length;
+                    this.bitmap = null;
+                    this.w = fontSize * this.text.Length;
                     this.h = fontSize;
                 }
-                this.x = x;
-                this.y = y;
+
                 this.offsetX = 0;
                 this.offsetY = 0;
-
                 this.selected = false;
                 this.buttonDowned = false;
             }
@@ -163,6 +154,7 @@ namespace m256GameUILayoutEditor
         public Form1()
         {
             InitializeComponent();
+
             setFormTitle();
             setStatus();
         }
@@ -175,6 +167,46 @@ namespace m256GameUILayoutEditor
         private void toolStripBtnNew_Click(object sender, EventArgs e)
         {
             newLayout();
+        }
+
+        private void openLayoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openLayoutdata();
+        }
+
+        private void toolStripBtnOpen_Click(object sender, EventArgs e)
+        {
+            openLayoutdata();
+        }
+
+        private void saveLayoutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            saveLayoutDataAs(true);
+        }
+
+        private void toolStripBtnSave_Click(object sender, EventArgs e)
+        {
+            saveLayoutDataAs(true);
+        }
+
+        private void saveLayoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveLayoutDataAs(false);
+        }
+
+        private void toolStripBtnSaveAs_Click(object sender, EventArgs e)
+        {
+            saveLayoutDataAs(false);
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportLayoutData();
+        }
+
+        private void toolStripBtnExport_Click(object sender, EventArgs e)
+        {
+            exportLayoutData();
         }
 
         // 新規レイアウト作成
@@ -246,16 +278,6 @@ namespace m256GameUILayoutEditor
             this.Text = string.Format("{0} - {1} {2}", docTitle, getAppliName(), getMyVer());
         }
 
-        private void openLayoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openLayoutdata();
-        }
-
-        private void toolStripBtnOpen_Click(object sender, EventArgs e)
-        {
-            openLayoutdata();
-        }
-
         // レイアウトデータ(.json)を開く
         private void openLayoutdata()
         {
@@ -268,18 +290,25 @@ namespace m256GameUILayoutEditor
         // レイアウトデータ(.json)の読み込み
         private void loadLayoutData(string filePath)
         {
-            string openFilePath = filePath;
+            setSaveFilePath(filePath);
+
             System.Text.Encoding enc = new System.Text.UTF8Encoding(false);
-            string s = System.IO.File.ReadAllText(openFilePath, enc);
+            string s = System.IO.File.ReadAllText(saveFilePath, enc);
 
             convJsonToLayoutdata(s);
+
             bgGridRedraw = true;
             pictureBox1.Invalidate();
             setStatus();
+        }
 
-            docTitle = System.IO.Path.GetFileName(openFilePath);
+        // 現在扱ってるレイアウトファイルのパスその他を指定
+        private void setSaveFilePath(string path)
+        {
+            saveFilePath = path;
+            saveDir = Path.GetDirectoryName(path) + "\\";
+            docTitle = Path.GetFileName(path);
             setFormTitle();
-            saveFilePath = openFilePath;
         }
 
         // JSON文字列からオブジェクトへの変換
@@ -297,32 +326,39 @@ namespace m256GameUILayoutEditor
             gridW = d.gridW;
             gridH = d.gridH;
 
+            List<string> errPaths = new List<string>();
+
             foreach (LayoutObj p in d.objs)
             {
                 Color fontColor = Color.FromArgb(255, p.fontColorR, p.fontColorG, p.fontColorB);
-                ObjData o = new ObjData(p.type, p.longName, p.x, p.y, p.fontName, p.fontSize, fontColor);
+
+                string path = p.path;
+                if (p.type == 0)
+                {
+                    path = getAbsolutePath(saveDir, path);
+                    if (!File.Exists(path))
+                    {
+                        errPaths.Add(path);
+                        continue;
+                    }
+                }
+
+                string name = Path.GetFileName(path);
+                ObjData o = new ObjData(p.type, name, path, p.text,
+                    p.x, p.y, p.fontName, p.fontSize, fontColor);
                 images.Add(o);
             }
-        }
 
-        private void saveLayoutToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            saveLayoutDataAs(true);
-        }
+            // 見つからないファイルがあった
+            if (errPaths.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Error : File not found.");
+                foreach (string s in errPaths)
+                    sb.AppendLine(s);
 
-        private void toolStripBtnSave_Click(object sender, EventArgs e)
-        {
-            saveLayoutDataAs(true);
-        }
-
-        private void saveLayoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveLayoutDataAs(false);
-        }
-
-        private void toolStripBtnSaveAs_Click(object sender, EventArgs e)
-        {
-            saveLayoutDataAs(false);
+                MessageBox.Show(sb.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // レイアウトデータをJSONファイルとして保存
@@ -332,7 +368,8 @@ namespace m256GameUILayoutEditor
             {
                 string filepath = getSaveFilename(true);
                 if (filepath == "") return;
-                saveFilePath = filepath;
+
+                setSaveFilePath(filepath);
             }
 
             string s = getJsonStringFromLayoutData();
@@ -342,12 +379,10 @@ namespace m256GameUILayoutEditor
             sw.Write(s);
             sw.Close();
 
-            docTitle = System.IO.Path.GetFileName(saveFilePath);
-            setFormTitle();
-
             showSaveMessage(docTitle);
         }
 
+        // 保存したことをステータスバーに表示
         private void showSaveMessage(string fn)
         {
             //MessageBox.Show("Save " + fn, "Result",
@@ -372,8 +407,7 @@ namespace m256GameUILayoutEditor
                 // CSV, etc
                 d.Filter = "CSV file(*.csv)|*.csv|YAML file(*.yml;*.yaml)|*.yml;*.yaml|ALL(*.*)|*.*";
                 string fn = docTitle;
-                if (fn.EndsWith(".json"))
-                    fn = System.IO.Path.GetFileNameWithoutExtension(fn);
+                if (fn.EndsWith(".json")) fn = Path.GetFileNameWithoutExtension(fn);
 
                 d.FileName = fn;
             }
@@ -402,18 +436,26 @@ namespace m256GameUILayoutEditor
                 ObjData o = images[i];
                 d.objs[i] = new LayoutObj();
                 LayoutObj p = d.objs[i];
-                p.shortName = o.shortName;
+
                 p.type = o.type;
+                p.name = o.name;
+                p.text = o.text;
+
                 p.x = o.x;
                 p.y = o.y;
                 p.w = o.w;
                 p.h = o.h;
-                p.longName = o.longName;
+
                 p.fontName = o.fontName;
                 p.fontSize = o.fontSize;
                 p.fontColorR = o.fontColor.R;
                 p.fontColorG = o.fontColor.G;
                 p.fontColorB = o.fontColor.B;
+
+                if (o.type == 0)
+                    p.path = getRelativePath(saveDir, o.path); // Image
+                else
+                    p.path = o.path; // Text
             }
 
             // JSONに変換
@@ -424,21 +466,70 @@ namespace m256GameUILayoutEditor
             return Encoding.UTF8.GetString(stream1.ToArray());
         }
 
-        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        // 絶対パスを相対パスに変換して返す
+        private string getRelativePath(string dir, string path)
         {
-            exportLayoutData();
+            if (path == string.Empty) return "";
+            if (!Path.IsPathRooted(path)) return path;
+
+            if (dir == string.Empty) return "";
+            if (!Path.IsPathRooted(dir)) return "";
+
+            if (!dir.EndsWith("\\")) dir += "\\";
+
+            string basePath = dir.Replace("%", "%25");
+            string filePath = path.Replace("%", "%25");
+
+            Uri u1 = new Uri(basePath);
+            Uri u2 = new Uri(filePath);
+            Uri relativeUri = u1.MakeRelativeUri(u2);
+            string relativePath = relativeUri.ToString();
+
+            relativePath = Uri.UnescapeDataString(relativePath);
+            relativePath = relativePath.Replace("%25", "%");
+            relativePath = relativePath.Replace('/', '\\');
+
+            Console.WriteLine(dir);
+            Console.WriteLine(path);
+            Console.WriteLine(" -> " + relativePath);
+
+            return relativePath;
         }
 
-        private void toolStripBtnExport_Click(object sender, EventArgs e)
+        // 相対パスを絶対パスに変換して返す
+        private string getAbsolutePath(string dir, string path)
         {
-            exportLayoutData();
+            if (path == string.Empty) return "";
+            if (Path.IsPathRooted(path)) return path;
+
+            if (dir == string.Empty) return "";
+            if (!Path.IsPathRooted(dir)) return "";
+
+            if (!dir.EndsWith("\\")) dir += "\\";
+
+            string basePath = dir.Replace("%", "%25");
+            string filePath = path.Replace("%", "%25");
+
+            Uri u1 = new Uri(basePath);
+            Uri u2 = new Uri(u1, filePath);
+            string absolutePath = u2.LocalPath;
+
+            absolutePath = absolutePath.Replace("%25", "%");
+
+            Console.WriteLine(dir);
+            Console.WriteLine(path);
+            Console.WriteLine(" -> " + absolutePath);
+
+            return absolutePath;
         }
 
         // レイアウトデータをエクスポート
+        // TODO 相対パスに変換してエクスポート
         private void exportLayoutData()
         {
             string filepath = getSaveFilename(false);
             if (filepath == "") return;
+            string dir = Path.GetDirectoryName(filepath) + "\\";
 
             List<string> lines = new List<string>();
             if (filepath.EndsWith(".csv"))
@@ -446,12 +537,25 @@ namespace m256GameUILayoutEditor
                 // CSV
                 foreach (ObjData o in images)
                 {
-                    string s = string.Format(
-                        "\"{0}\",{1},{2},{3},{4},{5},\"{6}\",\"{7}\",{8},{9},{10},{11}",
-                        o.shortName, o.x, o.y, o.w, o.h, o.type,
-                        o.longName, o.fontName, o.fontSize,
-                        o.fontColor.R, o.fontColor.G, o.fontColor.B);
-                    lines.Add(s);
+                    string path = o.path;
+                    if (o.type == 0) path = getRelativePath(dir, path);
+
+                    List<string> strs = new List<string>();
+                    strs.Add(string.Format("{0}", o.type));
+                    strs.Add(string.Format("\"{0}\"", o.name));
+                    strs.Add(string.Format("\"{0}\"", path));
+                    strs.Add(string.Format("\"{0}\"", o.text));
+                    strs.Add(string.Format("{0}", o.x));
+                    strs.Add(string.Format("{0}", o.y));
+                    strs.Add(string.Format("{0}", o.w));
+                    strs.Add(string.Format("{0}", o.h));
+                    strs.Add(string.Format("\"{0}\"", o.fontName));
+                    strs.Add(string.Format("{0}", o.fontSize));
+                    strs.Add(string.Format("{0}", o.fontColor.R));
+                    strs.Add(string.Format("{0}", o.fontColor.G));
+                    strs.Add(string.Format("{0}", o.fontColor.B));
+
+                    lines.Add(string.Join(",", strs.ToArray()));
                 }
             }
             else if (filepath.EndsWith(".yml") || filepath.EndsWith(".yaml"))
@@ -463,21 +567,27 @@ namespace m256GameUILayoutEditor
                 lines.Add(":objs:");
                 foreach (ObjData o in images)
                 {
-                    lines.Add(string.Format("- :id: {0}", o.shortName));
+                    string path = o.path;
+                    if (o.type == 0) path = getRelativePath(dir, path);
+
+                    lines.Add(string.Format("- :type: {0}", o.type));
+
+                    lines.Add(string.Format("  :id: {0}", (o.name == "")? "\'\'" : o.name));
+                    lines.Add(string.Format("  :path: {0}", (path == "") ? "\'\'" : path));
+                    lines.Add(string.Format("  :text: {0}", (o.text == "") ? "\'\'" : o.text));
+
                     lines.Add(string.Format("  :x: {0}", o.x));
                     lines.Add(string.Format("  :y: {0}", o.y));
                     lines.Add(string.Format("  :w: {0}", o.w));
                     lines.Add(string.Format("  :h: {0}", o.h));
-                    lines.Add(string.Format("  :type: {0}", o.type));
-                    lines.Add(string.Format("  :path: {0}", o.longName));
-                    lines.Add(string.Format("  :fontname: {0}", o.fontName));
+
+                    lines.Add(string.Format("  :fontname: {0}", (o.fontName == "") ? "\'\'" : o.fontName));
                     lines.Add(string.Format("  :fontsize: {0}", o.fontSize));
 
                     lines.Add("  :fontcolor:");
                     lines.Add(string.Format("  - {0}", o.fontColor.R));
                     lines.Add(string.Format("  - {0}", o.fontColor.G));
                     lines.Add(string.Format("  - {0}", o.fontColor.B));
-
                 }
             }
 
@@ -537,11 +647,12 @@ namespace m256GameUILayoutEditor
         {
             int x = 0;
             int y = 0;
-            foreach (string fn in files)
+            foreach (string path in files)
             {
-                if (checkImageFormat(fn))
+                if (checkImageFormat(path))
                 {
-                    ObjData o = new ObjData(0, fn, x, y, "", 0, Color.Blue);
+                    string name = Path.GetFileName(path);
+                    ObjData o = new ObjData(0, name, path, "", x, y, "", 0, Color.Blue);
                     images.Add(o);
                     x += 16;
                     y += 16;
@@ -638,7 +749,7 @@ namespace m256GameUILayoutEditor
                     int size = o.fontSize * zoomValue / 100;
                     Font fnt = new Font(o.fontName, size);
                     SolidBrush fb = new SolidBrush(o.fontColor);
-                    g.DrawString(o.longName, fnt, fb, px, py);
+                    g.DrawString(o.text, fnt, fb, px, py);
                     fb.Dispose();
                     fnt.Dispose();
                 }
@@ -902,7 +1013,7 @@ namespace m256GameUILayoutEditor
                 // オブジェクトが一つだけ選択されてる場合
                 foreach (ObjData o in images)
                     if (o.selected)
-                        toolStripStatusObjInfo.Text = String.Format("x,y={0},{1}  w,h={2},{3}  [{4}]", o.x, o.y, o.w, o.h, o.shortName);
+                        toolStripStatusObjInfo.Text = String.Format("x,y={0},{1}  w,h={2},{3}  [{4}]", o.x, o.y, o.w, o.h, o.name);
             }
             else if (n == 0)
                 toolStripStatusObjInfo.Text = "--------";
@@ -1312,8 +1423,8 @@ namespace m256GameUILayoutEditor
                 string str = f.textStr;
                 int x = 0;
                 int y = 0;
-                ObjData o = new ObjData(1, str, x, y,
-                    this.fontName, this.fontSize, this.fontColor);
+                ObjData o = new ObjData(1, str, "", str,
+                    x, y, this.fontName, this.fontSize, this.fontColor);
                 images.Add(o);
 
                 pictureBox1.Invalidate();

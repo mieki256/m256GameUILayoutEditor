@@ -1,6 +1,6 @@
 #!ruby -Ks
 # -*- mode: ruby; Encoding: sjis; coding: sjis -*-
-# Last updated: <2015/06/13 10:42:40 +0900>
+# Last updated: <2015/06/15 01:15:21 +0900>
 #
 # Ruby + DXRuby を使ってレイアウトを再現してみるテスト
 
@@ -12,9 +12,17 @@ o = YAML.load_file("layout1.yml")
 Window.resize(o[:canvas_w], o[:canvas_h])
 sprs = []
 o[:objs].each do |d|
-  img = Image.load(d[:id])
-  spr = Sprite.new(d[:x], d[:y], img)
-  sprs.push(spr)
+  if d[:type] == 0
+    img = Image.load(d[:path])
+    spr = Sprite.new(d[:x], d[:y], img)
+    sprs.push(spr)
+  else
+    fnt = Font.new(d[:fontsize], d[:fontname])
+    img = Image.new(640, 480)
+    img.drawFont(0, 0, d[:text], fnt, d[:fontcolor])
+    spr = Sprite.new(d[:x], d[:y], img)
+    sprs.push(spr)
+  end
 end
 
 Window.loop do

@@ -12,7 +12,7 @@ namespace m256GameUILayoutEditor
     public class LayoutObj
     {
         [DataMember]
-        public string shortName { get; set; }
+        public string name { get; set; }
 
         [DataMember]
         public int type { get; set; }
@@ -30,7 +30,10 @@ namespace m256GameUILayoutEditor
         public int h { get; set; }
 
         [DataMember]
-        public string longName { get; set; }
+        public string path { get; set; }
+
+        [DataMember]
+        public string text { get; set; }
 
         [DataMember]
         public string fontName { get; set; }

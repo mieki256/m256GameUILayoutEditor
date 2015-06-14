@@ -2,133 +2,171 @@
 :canvas_w: 640
 :canvas_h: 480
 :objs:
-- :id: g_bg.jpg
+- :type: 0
+  :id: g_bg.jpg
+  :path: g_bg.jpg
+  :text: ''
   :x: 0
   :y: 0
   :w: 640
   :h: 480
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_bg.jpg
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_star.png
-  :x: 224
-  :y: 123
-  :w: 191
-  :h: 181
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_star.png
-  :fontname: 
+- :type: 0
+  :id: g_box.png
+  :path: g_box.png
+  :text: ''
+  :x: 128
+  :y: 352
+  :w: 146
+  :h: 83
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_textexit.png
+- :type: 0
+  :id: g_textexit.png
+  :path: g_textexit.png
+  :text: ''
   :x: 550
   :y: 416
   :w: 66
   :h: 23
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textexit.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_textgamestart.png
+- :type: 0
+  :id: g_textgamestart.png
+  :path: g_textgamestart.png
+  :text: ''
   :x: 416
   :y: 224
   :w: 200
   :h: 23
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textgamestart.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_texthowtoplay.png
+- :type: 0
+  :id: g_texthowtoplay.png
+  :path: g_texthowtoplay.png
+  :text: ''
   :x: 403
   :y: 288
   :w: 213
   :h: 28
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_texthowtoplay.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_textmenu.png
+- :type: 0
+  :id: g_textmenu.png
+  :path: g_textmenu.png
+  :text: ''
   :x: 524
   :y: 160
   :w: 92
   :h: 23
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textmenu.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_textoption.png
+- :type: 0
+  :id: g_textoption.png
+  :path: g_textoption.png
+  :text: ''
   :x: 504
   :y: 352
   :w: 112
   :h: 28
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_textoption.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
-- :id: g_triangle.png
-  :x: 15
-  :y: 165
-  :w: 315
-  :h: 194
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_triangle.png
-  :fontname: 
-  :fontsize: 0
-  :fontcolor:
-  - 0
-  - 0
-  - 255
-- :id: g_box.png
-  :x: 47
-  :y: 341
-  :w: 146
-  :h: 83
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_box.png
-  :fontname: 
-  :fontsize: 0
-  :fontcolor:
-  - 0
-  - 0
-  - 255
-- :id: g_titlelogo.png
+- :type: 0
+  :id: g_titlelogo.png
+  :path: g_titlelogo.png
+  :text: ''
   :x: 105
   :y: 32
   :w: 430
   :h: 68
-  :type: 0
-  :path: C:\home\Visual Studio 2013\Projects\m256GameUILayoutEditor\m256GameUILayoutEditor\TestData\g_titlelogo.png
-  :fontname: 
+  :fontname: ''
   :fontsize: 0
   :fontcolor:
   - 0
   - 0
   - 255
+- :type: 0
+  :id: g_triangle.png
+  :path: g_triangle.png
+  :text: ''
+  :x: 39
+  :y: 123
+  :w: 315
+  :h: 194
+  :fontname: ''
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :type: 0
+  :id: g_star.png
+  :path: g_star.png
+  :text: ''
+  :x: 136
+  :y: 147
+  :w: 191
+  :h: 181
+  :fontname: ''
+  :fontsize: 0
+  :fontcolor:
+  - 0
+  - 0
+  - 255
+- :type: 1
+  :id: ''
+  :path: ''
+  :text: Test String
+  :x: 115
+  :y: 362
+  :w: 264
+  :h: 24
+  :fontname: Arial
+  :fontsize: 24
+  :fontcolor:
+  - 255
+  - 0
+  - 0
+- :type: 1
+  :id: Impact
+  :path: ''
+  :text: Impact
+  :x: 290
+  :y: 381
+  :w: 300
+  :h: 50
+  :fontname: Impact
+  :fontsize: 50
+  :fontcolor:
+  - 0
+  - 255
+  - 0
