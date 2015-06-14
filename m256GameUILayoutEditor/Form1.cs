@@ -794,8 +794,8 @@ namespace m256GameUILayoutEditor
                     g.DrawString(o.text, fnt, fb, px, py,sf);
 
                     var sz = g.MeasureString(o.text, fnt, pictureBox1.Width, sf);
-                    o.w = (int)sz.Width;
-                    o.h = (int)sz.Height;
+                    o.w = ((int)sz.Width) * 100 / zoomValue;
+                    o.h = ((int)sz.Height) * 100 / zoomValue;
 
                     fb.Dispose();
                     fnt.Dispose();
@@ -907,8 +907,8 @@ namespace m256GameUILayoutEditor
         // TODO ホイール回転でズームできるようにしたい
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            int mx = e.X;
-            int my = e.Y;
+            int mx = (e.X * 100 / zoomValue);
+            int my = (e.Y * 100 / zoomValue);
             Boolean multiSelect = false;
 
             buttonPressed = true;
@@ -965,10 +965,10 @@ namespace m256GameUILayoutEditor
         // オブジェクト範囲内に座標があるか調べる
         private Boolean checkHit(ObjData o, int mx, int my)
         {
-            int x0 = o.x * zoomValue / 100;
-            int y0 = o.y * zoomValue / 100;
-            int w = o.w * zoomValue / 100;
-            int h = o.h * zoomValue / 100;
+            int x0 = o.x;
+            int y0 = o.y;
+            int w = o.w;
+            int h = o.h;
             int x1 = x0 + w;
             int y1 = y0 + h;
             return (x0 <= mx && mx <= x1 && y0 <= my && my <= y1);
@@ -993,8 +993,8 @@ namespace m256GameUILayoutEditor
         // PictureBox 上でマウスボタンが離された
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            int mx = e.X;
-            int my = e.Y;
+            int mx = (e.X * 100 / zoomValue);
+            int my = (e.Y * 100 / zoomValue);
             Boolean multiSelect = false;
 
             buttonPressed = false;
@@ -1019,12 +1019,16 @@ namespace m256GameUILayoutEditor
         }
 
         // PictureBox 上でマウスがドラッグされた
+        // TODO 拡大縮小表示時に移動量がおかしくなるのを修正したい
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (buttonPressed && countSelectedObject() > 0)
             {
+                int mx = (e.X * 100 / zoomValue);
+                int my = (e.Y * 100 / zoomValue);
+                Console.WriteLine("{0},{1}", mx, my);
                 foreach (ObjData o in images)
-                    if (o.selected) o.changePosition(e.X, e.Y, snapEnable, gridW, gridH);
+                    if (o.selected) o.changePosition(mx, my, snapEnable, gridW, gridH);
 
                 pictureBox1.Invalidate();
                 setStatusBarObjInfo();

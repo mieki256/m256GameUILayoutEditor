@@ -75,8 +75,8 @@
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(601, 407);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -85,7 +85,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 239);
+            this.label4.Location = new System.Drawing.Point(13, 232);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 12);
             this.label4.TabIndex = 10;
@@ -95,7 +95,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 101);
+            this.label3.Location = new System.Drawing.Point(22, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 12);
             this.label3.TabIndex = 8;
@@ -103,12 +103,11 @@
             // 
             // textBoxInputArea
             // 
+            this.textBoxInputArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.textBoxInputArea, 3);
-            this.textBoxInputArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxInputArea.Location = new System.Drawing.Point(75, 83);
-            this.textBoxInputArea.Multiline = true;
+            this.textBoxInputArea.Location = new System.Drawing.Point(75, 90);
             this.textBoxInputArea.Name = "textBoxInputArea";
-            this.textBoxInputArea.Size = new System.Drawing.Size(515, 49);
+            this.textBoxInputArea.Size = new System.Drawing.Size(515, 19);
             this.textBoxInputArea.TabIndex = 9;
             this.textBoxInputArea.TextChanged += new System.EventHandler(this.textBoxInputArea_TextChanged);
             // 
@@ -234,9 +233,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 3);
             this.panel1.Controls.Add(this.pictureBoxPreview);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(75, 138);
+            this.panel1.Location = new System.Drawing.Point(75, 123);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(515, 215);
+            this.panel1.Size = new System.Drawing.Size(515, 231);
             this.panel1.TabIndex = 11;
             // 
             // pictureBoxPreview
@@ -245,7 +244,7 @@
             this.pictureBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxPreview.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxPreview.Name = "pictureBoxPreview";
-            this.pictureBoxPreview.Size = new System.Drawing.Size(511, 211);
+            this.pictureBoxPreview.Size = new System.Drawing.Size(511, 227);
             this.pictureBoxPreview.TabIndex = 0;
             this.pictureBoxPreview.TabStop = false;
             this.pictureBoxPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPreview_Paint);
@@ -256,7 +255,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
             this.flowLayoutPanel1.Controls.Add(this.buttonOk);
             this.flowLayoutPanel1.Controls.Add(this.buttonCancel);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(390, 359);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(390, 360);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 36);
             this.flowLayoutPanel1.TabIndex = 12;
