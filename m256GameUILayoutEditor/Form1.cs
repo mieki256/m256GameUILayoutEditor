@@ -524,7 +524,6 @@ namespace m256GameUILayoutEditor
         }
 
         // レイアウトデータをエクスポート
-        // TODO 相対パスに変換してエクスポート
         private void exportLayoutData()
         {
             string filepath = getSaveFilename(false);
