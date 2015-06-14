@@ -143,8 +143,7 @@ namespace m256GameUILayoutEditor
             // 画像を解放
             public void disposeImage()
             {
-                if (this.bitmap != null)
-                    this.bitmap.Dispose();
+                if (this.bitmap != null) this.bitmap.Dispose();
             }
         }
 
@@ -627,6 +626,47 @@ namespace m256GameUILayoutEditor
             selectImageFiles();
         }
 
+        // テキスト追加メニューを選択
+        private void addTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addTextObj();
+        }
+
+        // テキスト追加ボタンをクリック
+        private void toolStripBtnAddText_Click(object sender, EventArgs e)
+        {
+            addTextObj();
+        }
+
+        // テキストオブジェクトを追加
+        // TODO テキストオブジェクトのサイズを正確に取得できるようにする
+        private void addTextObj()
+        {
+            FormAddText f = new FormAddText();
+
+            f.fontName = this.fontName;
+            f.fontSize = this.fontSize;
+            f.fontColor = this.fontColor;
+            f.textStr = "Test String";
+
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                this.fontName = f.fontName;
+                this.fontSize = f.fontSize;
+                this.fontColor = f.fontColor;
+                string str = f.textStr;
+                int x = 0;
+                int y = 0;
+                ObjData o = new ObjData(1, str, "", str,
+                    x, y, this.fontName, this.fontSize, this.fontColor);
+                images.Add(o);
+
+                pictureBox1.Invalidate();
+            }
+
+            f.Dispose();
+        }
+
         // 画像ファイルを追加するためのダイアログを開く
         private void selectImageFiles()
         {
@@ -1083,11 +1123,6 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        static Boolean checkSelected(ObjData o)
-        {
-            return o.selected == true;
-        }
-
         // 選択されたオブジェクトを最背面に移動
         private void sendObjectToBack()
         {
@@ -1102,6 +1137,11 @@ namespace m256GameUILayoutEditor
                 images.Insert(0, o);
 
             pictureBox1.Invalidate();
+        }
+
+        static Boolean checkSelected(ObjData o)
+        {
+            return o.selected == true;
         }
 
         private void bringToForwardsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1393,45 +1433,6 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        private void addTextToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            addTextObj();
-        }
-
-        private void toolStripBtnAddText_Click(object sender, EventArgs e)
-        {
-            addTextObj();
-        }
-
-        // テキストオブジェクトを追加
-        // TODO テキストオブジェクトのサイズを正確に取得できるようにする
-        private void addTextObj()
-        {
-            FormAddText f = new FormAddText();
-
-            f.fontName = this.fontName;
-            f.fontSize = this.fontSize;
-            f.fontColor = this.fontColor;
-            f.textStr = "Test String";
-
-            if (f.ShowDialog(this) == DialogResult.OK)
-            {
-                this.fontName = f.fontName;
-                this.fontSize = f.fontSize;
-                this.fontColor = f.fontColor;
-                string str = f.textStr;
-                int x = 0;
-                int y = 0;
-                ObjData o = new ObjData(1, str, "", str,
-                    x, y, this.fontName, this.fontSize, this.fontColor);
-                images.Add(o);
-
-                pictureBox1.Invalidate();
-            }
-
-            f.Dispose();
-        }
-
         // Grid Size 設定用 ComboBox のテキストが変更された際の処理
         // 
         // TODO リストから選んだ際にフォーカスを外す方法を調べないと
@@ -1671,6 +1672,33 @@ namespace m256GameUILayoutEditor
         private void deselectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectOrDeselectAll(false);
+        }
+
+        // 削除メニューを選択
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            deleteSelectObj();
+        }
+
+        // 削除ボタンをクリック
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            deleteSelectObj();
+        }
+
+        // 選択オブジェクトを削除。画像解放も行う
+        private void deleteSelectObj()
+        {
+            for (int i = images.Count - 1; i >= 0; i--)
+            {
+                ObjData o = images[i];
+                if (o.selected)
+                {
+                    o.disposeImage();
+                    images.Remove(images[i]);
+                }
+            }
+            pictureBox1.Invalidate();
         }
 
     }
