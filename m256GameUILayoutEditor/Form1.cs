@@ -785,15 +785,17 @@ namespace m256GameUILayoutEditor
                 else
                 {
                     // Text
+                    StringFormat sf = new StringFormat(StringFormat.GenericTypographic);
+
                     int size = o.fontSize * zoomValue / 100;
                     Font fnt = new Font(o.fontName, size);
                     SolidBrush fb = new SolidBrush(o.fontColor);
-                    g.DrawString(o.text, fnt, fb, px, py);
 
-                    SizeF textSize = new SizeF();
-                    textSize = g.MeasureString(o.text, fnt);
-                    o.w = (int)textSize.Width;
-                    o.h = (int)textSize.Height;
+                    g.DrawString(o.text, fnt, fb, px, py,sf);
+
+                    var sz = g.MeasureString(o.text, fnt, pictureBox1.Width, sf);
+                    o.w = (int)sz.Width;
+                    o.h = (int)sz.Height;
 
                     fb.Dispose();
                     fnt.Dispose();

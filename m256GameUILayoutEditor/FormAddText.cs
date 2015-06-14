@@ -115,9 +115,16 @@ namespace m256GameUILayoutEditor
             int fsize = Decimal.ToInt32(numericUpDownFontSize.Value);
             Color col = buttonChoiceColor.BackColor;
 
+            StringFormat sf = new StringFormat(StringFormat.GenericTypographic);
             Font fnt = new Font(fontName, fsize);
             SolidBrush b = new SolidBrush(col);
-            g.DrawString(s, fnt, b, 0, 0);
+
+            g.DrawString(s, fnt, b, 0, 0, sf);
+
+            var sz = g.MeasureString(s, fnt, this.Width, sf);
+            int w = (int)sz.Width;
+            int h = (int)sz.Height;
+
             b.Dispose();
             fnt.Dispose();
         }
