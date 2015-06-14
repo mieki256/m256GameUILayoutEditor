@@ -53,6 +53,8 @@ namespace m256GameUILayoutEditor
         private int oldMouseX = 0;
         private int oldMouseY = 0;
 
+        private Boolean mouseInCanvas = false;
+
         // 表示オブジェクトの情報を記憶するためのクラス
         class ObjData
         {
@@ -791,7 +793,7 @@ namespace m256GameUILayoutEditor
                     Font fnt = new Font(o.fontName, size);
                     SolidBrush fb = new SolidBrush(o.fontColor);
 
-                    g.DrawString(o.text, fnt, fb, px, py,sf);
+                    g.DrawString(o.text, fnt, fb, px, py, sf);
 
                     var sz = g.MeasureString(o.text, fnt, pictureBox1.Width, sf);
                     o.w = ((int)sz.Width) * 100 / zoomValue;
@@ -1019,7 +1021,6 @@ namespace m256GameUILayoutEditor
         }
 
         // PictureBox 上でマウスがドラッグされた
-        // TODO 拡大縮小表示時に移動量がおかしくなるのを修正したい
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (buttonPressed && countSelectedObject() > 0)
@@ -1520,65 +1521,48 @@ namespace m256GameUILayoutEditor
 
         // フォーム上でキーが押された場合
         //
-        // TODO キー入力を取りこぼす時があるので原因を調べないと…
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        // KeyDownイベントではキー入力を取りこぼす。
+        // PreviewKeyDownイベントで処理をしたら取りこぼさなくなった。
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
-            if (toolStripComboBoxGridSize.Focused)
-            {
-                //Console.WriteLine("Focused Grid Box");
-                return;
-            }
+            //if (toolStripComboBoxGridSize.Focused) return;
+            //if (toolStripComboBoxCanvasSize.Focused) return;
 
-            if (toolStripComboBoxCanvasSize.Focused)
-            {
-                //Console.WriteLine("Focused Canvas Box");
-                return;
-            }
+            // Canvasの中にマウスカーソルが入ってなければ以降の処理はしない
+            if (!mouseInCanvas) return;
 
-            if (e.KeyCode == Keys.Escape)
-            {
-                // escキーが押されたら全オブジェクトを非選択状態にする
-                selectOrDeselectAll(false);
-            }
+            // escキーが押されたら全オブジェクトを非選択状態にする
+            //if (e.KeyCode == Keys.Escape) selectOrDeselectAll(false);
 
             int dx = 1;
             int dy = 1;
+
+            // Shiftキーが押されていたら移動増分を増やす
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
             {
-                // Shiftキーが押されていたら移動増分を増やす
                 dx *= gridW;
                 dy *= gridH;
             }
 
             // 選択されてる全オブジェクトをカーソルキーを使ってドット単位で移動
-            if (countSelectedObject() > 0)
-            {
-                if (e.KeyCode == Keys.Up) moveSelectObjByKey(0, -dy);
-                if (e.KeyCode == Keys.Down) moveSelectObjByKey(0, dy);
-                if (e.KeyCode == Keys.Left) moveSelectObjByKey(-dx, 0);
-                if (e.KeyCode == Keys.Right) moveSelectObjByKey(dx, 0);
-            }
-
-            //Console.WriteLine(e.KeyCode);
+            int x = 0;
+            int y = 0;
+            if (e.KeyCode == Keys.Up) y -= dy;
+            if (e.KeyCode == Keys.Down) y += dy;
+            if (e.KeyCode == Keys.Left) x -= dx;
+            if (e.KeyCode == Keys.Right) x += dx;
+            if (x != 0 || y != 0) moveSelectObjByKey(x, y);
         }
 
         // 選択されてる全オブジェクトをキー入力で移動
         private void moveSelectObjByKey(int dx, int dy)
         {
             foreach (ObjData o in images)
-            {
-                if (o.selected)
-                    o.setPosition(o.x + dx, o.y + dy);
-            }
+                if (o.selected) o.setPosition(o.x + dx, o.y + dy);
+
             pictureBox1.Invalidate();
             setStatusBarObjInfo();
-        }
-
-        // フォーム上でキーが離された場合
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            //Console.WriteLine(e.KeyCode);
         }
 
         // メニューからキャンバスサイズ変更
@@ -1711,6 +1695,40 @@ namespace m256GameUILayoutEditor
                 }
             }
             pictureBox1.Invalidate();
+        }
+
+        // グリッドサイズ ComboBoxキー入力
+        private void toolStripComboBoxGridSize_KeyDown(object sender, KeyEventArgs e)
+        {
+            // カーソル上下キーを無効化
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // キャンバスサイズ ComboBoxキー入力
+        private void toolStripComboBoxCanvasSize_KeyDown(object sender, KeyEventArgs e)
+        {
+            // カーソル上下キーを無効化
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = true;
+            }
+        }
+
+        // マウスが PictureBox の中に入った
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            //panel1.BackColor = Color.FromArgb(255, 110, 110, 110);
+            mouseInCanvas = true;
+        }
+
+        // マウスが PictureBox の外に出た
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            //panel1.BackColor = Color.DimGray;
+            mouseInCanvas = false;
         }
 
     }

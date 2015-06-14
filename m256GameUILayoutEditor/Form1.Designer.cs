@@ -135,7 +135,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(848, 26);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
@@ -540,7 +540,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 26);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(848, 26);
-            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripBtnNew
@@ -777,6 +777,8 @@
             this.toolStripComboBoxGridSize.Name = "toolStripComboBoxGridSize";
             this.toolStripComboBoxGridSize.Size = new System.Drawing.Size(80, 26);
             this.toolStripComboBoxGridSize.Text = "16x16";
+            this.toolStripComboBoxGridSize.ToolTipText = "Set Grid Size";
+            this.toolStripComboBoxGridSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxGridSize_KeyDown);
             this.toolStripComboBoxGridSize.TextChanged += new System.EventHandler(this.toolStripComboBoxGridSize_TextChanged);
             // 
             // toolStripSeparator7
@@ -811,6 +813,8 @@
             this.toolStripComboBoxCanvasSize.Name = "toolStripComboBoxCanvasSize";
             this.toolStripComboBoxCanvasSize.Size = new System.Drawing.Size(96, 26);
             this.toolStripComboBoxCanvasSize.Text = "640x480";
+            this.toolStripComboBoxCanvasSize.ToolTipText = "Set Canvas Size";
+            this.toolStripComboBoxCanvasSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxCanvasSize_KeyDown);
             this.toolStripComboBoxCanvasSize.TextChanged += new System.EventHandler(this.toolStripComboBoxCanvasSize_TextChanged);
             // 
             // toolStripSeparator8
@@ -880,17 +884,17 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 52);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 492);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(640, 480);
@@ -899,6 +903,8 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
@@ -931,7 +937,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
@@ -968,8 +974,7 @@
             this.Text = "m256 Game UI Layout Editor";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
