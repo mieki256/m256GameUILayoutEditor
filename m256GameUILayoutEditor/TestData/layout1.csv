@@ -1,0 +1,12 @@
+0,"g_bg.jpg","g_bg.jpg","",0,0,640,480,"",0,0,0,255
+0,"g_box.png","g_box.png","",128,352,146,83,"",0,0,0,255
+0,"g_textexit.png","g_textexit.png","",550,416,66,23,"",0,0,0,255
+0,"g_textgamestart.png","g_textgamestart.png","",416,224,200,23,"",0,0,0,255
+0,"g_texthowtoplay.png","g_texthowtoplay.png","",403,288,213,28,"",0,0,0,255
+0,"g_textmenu.png","g_textmenu.png","",524,160,92,23,"",0,0,0,255
+0,"g_textoption.png","g_textoption.png","",504,352,112,28,"",0,0,0,255
+0,"g_titlelogo.png","g_titlelogo.png","",105,32,430,68,"",0,0,0,255
+0,"g_triangle.png","g_triangle.png","",39,123,315,194,"",0,0,0,255
+0,"g_star.png","g_star.png","",136,147,191,181,"",0,0,0,255
+1,"","","Test String",115,362,264,24,"Arial",24,255,0,0
+1,"Impact","","Impact",290,381,300,50,"Impact",50,0,255,0
