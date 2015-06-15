@@ -53,10 +53,12 @@
             // 
             this.comboBoxCanvasSizeW.FormattingEnabled = true;
             this.comboBoxCanvasSizeW.Items.AddRange(new object[] {
-            "",
             "240",
+            "256",
             "320",
+            "480",
             "512",
+            "600",
             "640",
             "720",
             "768",
@@ -66,6 +68,7 @@
             "1050",
             "1080",
             "1152",
+            "1200",
             "1280",
             "1366",
             "1400",
@@ -90,10 +93,12 @@
             // 
             this.comboBoxCanvasSizeH.FormattingEnabled = true;
             this.comboBoxCanvasSizeH.Items.AddRange(new object[] {
-            "",
             "240",
+            "256",
             "320",
+            "480",
             "512",
+            "600",
             "640",
             "720",
             "768",
@@ -103,6 +108,7 @@
             "1050",
             "1080",
             "1152",
+            "1200",
             "1280",
             "1366",
             "1400",

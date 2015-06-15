@@ -739,8 +739,6 @@ namespace m256GameUILayoutEditor
 
             string canvasText = string.Format("{0}x{1}", canvasW, canvasH);
             toolStripStatusLabelCanvasSize.Text = string.Format("Canvas {0}", canvasText);
-            if (toolStripComboBoxCanvasSize.Text != canvasText)
-                toolStripComboBoxCanvasSize.Text = canvasText;
 
             Boolean fg = snapToGridToolStripMenuItem.Checked;
             toolStripBtnSnapGrid.Checked = fg;
@@ -897,7 +895,6 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        // PictueBoxをクリック
         private void pictureBox1_Click(object sender, EventArgs e)
         {
         }
@@ -1446,6 +1443,55 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
+        // メニューからキャンバスサイズ変更
+        private void setCanvasSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setCanvasSize();
+        }
+
+        // ツールバーからキャンバスサイズ変更
+        private void toolStripButtonSetCanvasSize_Click(object sender, EventArgs e)
+        {
+            setCanvasSize();
+        }
+
+        // キャンバスサイズ変更ダイアログを開く
+        private void setCanvasSize()
+        {
+            FormSetCanvasSize f = new FormSetCanvasSize();
+
+            f.canvasWidth = this.canvasW.ToString();
+            f.canvasHeight = this.canvasH.ToString();
+            f.canvasColor = this.canvasColor;
+            f.gridColor = this.gridColor;
+
+            if (f.ShowDialog(this) == DialogResult.OK)
+            {
+                string s = string.Format("{0}x{1}", f.canvasWidth, f.canvasHeight);
+                changeCanvasOrGridSize(s, true);
+                canvasColor = f.canvasColor;
+                gridColor = f.gridColor;
+            }
+            f.Dispose();
+        }
+
+        // Grid Size ComboBox のリストが選択された
+        private void toolStripComboBoxGridSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolStripComboBox cb = toolStripComboBoxGridSize;
+            //Console.WriteLine(cb.SelectedItem.ToString());
+        }
+
+        // グリッドサイズ ComboBoxキー入力
+        private void toolStripComboBoxGridSize_KeyDown(object sender, KeyEventArgs e)
+        {
+            // カーソル上下キーを無効化
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = true;
+            }
+        }
+
         // Grid Size 設定用 ComboBox のテキストが変更された際の処理
         // 
         // TODO リストから選んだ際にフォーカスを外す方法を調べないと
@@ -1457,17 +1503,6 @@ namespace m256GameUILayoutEditor
             int selLen = cb.SelectionLength;
             //Console.WriteLine(string.Format("SelectedIndex = {0} ({1}) , SelectionLength = {2}", selIdx, s, selLen));
             changeCanvasOrGridSize(s, false);
-        }
-
-        // Canvas Size 設定用 ComboBox のテキストが変更された際の処理
-        private void toolStripComboBoxCanvasSize_TextChanged(object sender, EventArgs e)
-        {
-            ToolStripComboBox cb = toolStripComboBoxCanvasSize;
-            int selIdx = cb.SelectedIndex;
-            string s = cb.Text;
-            int selLen = cb.SelectionLength;
-            //Console.WriteLine(string.Format("SelectedIndex = {0} ({1}) , SelectionLength = {2}", selIdx, s, selLen));
-            changeCanvasOrGridSize(s, true);
         }
 
         // キャンバスまたはグリッドサイズを変更
@@ -1527,7 +1562,6 @@ namespace m256GameUILayoutEditor
         {
             // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
             //if (toolStripComboBoxGridSize.Focused) return;
-            //if (toolStripComboBoxCanvasSize.Focused) return;
 
             // Canvasの中にマウスカーソルが入ってなければ以降の処理はしない
             if (!mouseInCanvas) return;
@@ -1563,26 +1597,6 @@ namespace m256GameUILayoutEditor
 
             pictureBox1.Invalidate();
             setStatusBarObjInfo();
-        }
-
-        // メニューからキャンバスサイズ変更
-        private void setCanvasSizeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormSetCanvasSize f = new FormSetCanvasSize();
-
-            f.canvasWidth = this.canvasW.ToString();
-            f.canvasHeight = this.canvasH.ToString();
-            f.canvasColor = this.canvasColor;
-            f.gridColor = this.gridColor;
-
-            if (f.ShowDialog(this) == DialogResult.OK)
-            {
-                string s = string.Format("{0}x{1}", f.canvasWidth, f.canvasHeight);
-                changeCanvasOrGridSize(s, true);
-                canvasColor = f.canvasColor;
-                gridColor = f.gridColor;
-            }
-            f.Dispose();
         }
 
         private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1695,26 +1709,6 @@ namespace m256GameUILayoutEditor
                 }
             }
             pictureBox1.Invalidate();
-        }
-
-        // グリッドサイズ ComboBoxキー入力
-        private void toolStripComboBoxGridSize_KeyDown(object sender, KeyEventArgs e)
-        {
-            // カーソル上下キーを無効化
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
-            {
-                e.Handled = true;
-            }
-        }
-
-        // キャンバスサイズ ComboBoxキー入力
-        private void toolStripComboBoxCanvasSize_KeyDown(object sender, KeyEventArgs e)
-        {
-            // カーソル上下キーを無効化
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
-            {
-                e.Handled = true;
-            }
         }
 
         // マウスが PictureBox の中に入った

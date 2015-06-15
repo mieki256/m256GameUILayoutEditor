@@ -98,9 +98,6 @@
             this.toolStripBtnDisplayGrid = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxGridSize = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBoxCanvasSize = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButtonZoom = new System.Windows.Forms.ToolStripSplitButton();
             this.toolZoom25 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolZoom50 = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +113,8 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSetCanvasSize = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -352,12 +351,12 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.displayGridToolStripMenuItem1,
             this.toolStripSeparator4,
-            this.zoom25ToolStripMenuItem,
-            this.zoom50ToolStripMenuItem,
             this.zoomToolStripMenuItem,
             this.zoom200ToolStripMenuItem,
             this.zoom400ToolStripMenuItem,
-            this.zoom800ToolStripMenuItem});
+            this.zoom800ToolStripMenuItem,
+            this.zoom50ToolStripMenuItem,
+            this.zoom25ToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
             this.viewToolStripMenuItem.Text = "&View";
@@ -412,7 +411,7 @@
             // zoom400ToolStripMenuItem
             // 
             this.zoom400ToolStripMenuItem.Name = "zoom400ToolStripMenuItem";
-            this.zoom400ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
+            this.zoom400ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
             this.zoom400ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.zoom400ToolStripMenuItem.Text = "Zoom &400%";
             this.zoom400ToolStripMenuItem.Click += new System.EventHandler(this.zoom400ToolStripMenuItem_Click);
@@ -420,7 +419,7 @@
             // zoom800ToolStripMenuItem
             // 
             this.zoom800ToolStripMenuItem.Name = "zoom800ToolStripMenuItem";
-            this.zoom800ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D8)));
+            this.zoom800ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
             this.zoom800ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.zoom800ToolStripMenuItem.Text = "Zoom &800%";
             this.zoom800ToolStripMenuItem.Click += new System.EventHandler(this.zoom800ToolStripMenuItem_Click);
@@ -533,10 +532,9 @@
             this.toolStripBtnDisplayGrid,
             this.toolStripComboBoxGridSize,
             this.toolStripSeparator7,
-            this.toolStripLabel2,
-            this.toolStripComboBoxCanvasSize,
+            this.toolStripSplitButtonZoom,
             this.toolStripSeparator8,
-            this.toolStripSplitButtonZoom});
+            this.toolStripButtonSetCanvasSize});
             this.toolStrip1.Location = new System.Drawing.Point(0, 26);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(848, 26);
@@ -778,6 +776,7 @@
             this.toolStripComboBoxGridSize.Size = new System.Drawing.Size(80, 26);
             this.toolStripComboBoxGridSize.Text = "16x16";
             this.toolStripComboBoxGridSize.ToolTipText = "Set Grid Size";
+            this.toolStripComboBoxGridSize.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxGridSize_SelectedIndexChanged);
             this.toolStripComboBoxGridSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxGridSize_KeyDown);
             this.toolStripComboBoxGridSize.TextChanged += new System.EventHandler(this.toolStripComboBoxGridSize_TextChanged);
             // 
@@ -785,42 +784,6 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 26);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel2.Image")));
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(16, 23);
-            this.toolStripLabel2.Text = "Canvas";
-            // 
-            // toolStripComboBoxCanvasSize
-            // 
-            this.toolStripComboBoxCanvasSize.Items.AddRange(new object[] {
-            "320x240",
-            "512x512",
-            "640x480",
-            "800x600",
-            "1024x768",
-            "1280x720",
-            "1280x1024",
-            "1366x768",
-            "1400x1050",
-            "1600x900",
-            "1600x1200",
-            "1920x1080",
-            "1920x1200"});
-            this.toolStripComboBoxCanvasSize.Name = "toolStripComboBoxCanvasSize";
-            this.toolStripComboBoxCanvasSize.Size = new System.Drawing.Size(96, 26);
-            this.toolStripComboBoxCanvasSize.Text = "640x480";
-            this.toolStripComboBoxCanvasSize.ToolTipText = "Set Canvas Size";
-            this.toolStripComboBoxCanvasSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripComboBoxCanvasSize_KeyDown);
-            this.toolStripComboBoxCanvasSize.TextChanged += new System.EventHandler(this.toolStripComboBoxCanvasSize_TextChanged);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 26);
             // 
             // toolStripSplitButtonZoom
             // 
@@ -956,6 +919,22 @@
             this.toolStripButton1.ToolTipText = "toolStripButtonDelete";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButtonSetCanvasSize
+            // 
+            this.toolStripButtonSetCanvasSize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSetCanvasSize.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSetCanvasSize.Image")));
+            this.toolStripButtonSetCanvasSize.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSetCanvasSize.Name = "toolStripButtonSetCanvasSize";
+            this.toolStripButtonSetCanvasSize.Size = new System.Drawing.Size(23, 23);
+            this.toolStripButtonSetCanvasSize.Text = "Set Canvas Size";
+            this.toolStripButtonSetCanvasSize.ToolTipText = "Set Canvas Size";
+            this.toolStripButtonSetCanvasSize.Click += new System.EventHandler(this.toolStripButtonSetCanvasSize_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 26);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -1056,9 +1035,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxGridSize;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxCanvasSize;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButtonZoom;
         private System.Windows.Forms.ToolStripMenuItem toolZoom25;
         private System.Windows.Forms.ToolStripMenuItem toolZoom50;
@@ -1078,6 +1054,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSetCanvasSize;
     }
 }
 
