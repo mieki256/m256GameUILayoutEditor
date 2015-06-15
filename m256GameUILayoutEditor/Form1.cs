@@ -1024,7 +1024,9 @@ namespace m256GameUILayoutEditor
             {
                 int mx = (e.X * 100 / zoomValue);
                 int my = (e.Y * 100 / zoomValue);
-                Console.WriteLine("{0},{1}", mx, my);
+
+                //Console.WriteLine("{0},{1}", mx, my);
+
                 foreach (ObjData o in images)
                     if (o.selected) o.changePosition(mx, my, snapEnable, gridW, gridH);
 
