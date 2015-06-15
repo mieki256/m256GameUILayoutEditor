@@ -344,8 +344,7 @@ namespace m256GameUILayoutEditor
                     }
                 }
 
-                string name = Path.GetFileName(path);
-                ObjData o = new ObjData(p.type, name, path, p.text,
+                ObjData o = new ObjData(p.type, p.name, path, p.text,
                     p.x, p.y, p.fontName, p.fontSize, fontColor);
                 images.Add(o);
             }
