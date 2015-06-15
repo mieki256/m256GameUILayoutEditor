@@ -1348,6 +1348,7 @@ namespace m256GameUILayoutEditor
             {
                 string s = cb.Items[cb.SelectedIndex].ToString();
                 changeCanvasOrGridSize(s, false);
+                this.ActiveControl = null; // ComboBoxをアクティブじゃない状態にする
             }
         }
 
@@ -1363,6 +1364,7 @@ namespace m256GameUILayoutEditor
             {
                 string s = toolStripComboBoxGridSize.Text;
                 changeCanvasOrGridSize(s, false);
+                this.ActiveControl = null; // ComboBoxをアクティブじゃない状態にする
             }
         }
 
