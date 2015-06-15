@@ -921,7 +921,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 492);
             this.panel1.TabIndex = 0;
-            this.panel1.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
             // 
             // pictureBox1
             // 
@@ -932,7 +931,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);

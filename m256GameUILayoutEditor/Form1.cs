@@ -1490,7 +1490,7 @@ namespace m256GameUILayoutEditor
             {
                 e.Handled = true;
             }
-            else if(e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Enter)
             {
                 string s = toolStripComboBoxGridSize.Text;
                 changeCanvasOrGridSize(s, false);
@@ -1669,9 +1669,6 @@ namespace m256GameUILayoutEditor
         // Form1がロードされた時に呼ばれる
         private void Form1_Load(object sender, EventArgs e)
         {
-            // マウスホイール回転時のイベントを追加
-            //this.MouseWheel += new MouseEventHandler(Form1_MouseWheel);
-            pictureBox1.MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
         }
 
         // マウスが PictureBox の中に入った
@@ -1687,49 +1684,6 @@ namespace m256GameUILayoutEditor
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             mouseInCanvas = false;
-        }
-
-        private void panel1_MouseEnter(object sender, EventArgs e)
-        {
-            //panel1.Focus();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            //pictureBox1.Focus();
-        }
-
-        // マウスホイール回転時
-        private void Form1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            //zoomMouseWheel(e.Delta);
-        }
-
-        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            zoomMouseWheel(e.Delta);
-        }
-
-        // マウスホイール回転によるズーム
-        // ホイール回転でズームできるようにしたかったが、
-        // Panelのスクロールバーが反応してしまうので諦めた。
-        // 代わりに Ctrl + Plus / Minus キーでズームするようにした。
-        private void zoomMouseWheel(int delta)
-        {
-            if (delta <= -120)
-            {
-                // 下に回転
-                zoomValue *= 2;
-                if (zoomValue > 800) zoomValue = 800;
-                setZoom(zoomValue);
-            }
-            else if (delta >= 120)
-            {
-                // 上に回転
-                zoomValue /= 2;
-                if (zoomValue < 25) zoomValue = 25;
-                setZoom(zoomValue);
-            }
         }
 
         // PictureBox上でキーが押された場合
