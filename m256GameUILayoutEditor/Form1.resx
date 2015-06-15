@@ -121,6 +121,17 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="refreshToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAWJLR0QEj2jZUQAAAAd0SU1FB98GDwI4
+        L0dVtGAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTUtMDYtMTRUMDk6NDc6MDMrMDk6MDBmyxPcAAAAJXRF
+        WHRkYXRlOm1vZGlmeQAyMDE1LTA2LTE1VDAyOjU2OjQ3KzA5OjAwAH4bRQAAAHxJREFUOE+9kUESgCAI
+        RVl3/wN5pPYtSMLfkAJaixbPIeC/ZpSIOISPnYE3V9ymIsGtFqWURNIK+zeLCHJJC8sCliN8SRN4gZ4l
+        gdSWPBwIMEQ/Dgv1yASg/0YvFfT4e+Fg5B8BLsxDZlPBKoPA2mc8n/U6VPIG5G7BN5hOsgLpVOd4298A
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <data name="newLayoutToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -406,7 +417,7 @@
         13lO9H3iKW5KCyy5BkJXpYofBYSe+K+ghVNBD4qPnJRW4as5ddIOeRMAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButtonDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABqSURBVDhPrYwxDoAwDAMz8/+HsjMUArEErRMXwUkWoj7H

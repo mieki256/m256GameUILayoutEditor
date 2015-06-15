@@ -1751,15 +1751,23 @@ namespace m256GameUILayoutEditor
             }
         }
 
+        // PictureBoxにマウスカーソルが入った時の処理
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
             inCanvas = true;
             //pictureBox1.Focus();
         }
 
+        // PictureBoxからマウスカーソルが出た時の処理
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             inCanvas = false;
+        }
+
+        // 画面更新メニュー
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Invalidate();
         }
 
 
