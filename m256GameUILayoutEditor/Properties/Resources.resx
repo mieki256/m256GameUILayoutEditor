@@ -118,6 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m256gule" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImageResource\m256gule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m256gule1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImageResource\m256gule.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m256guledit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImageResource\m256guledit.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m256guledit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImageResource\m256guledit2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m256gule_toobar_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\m256gule_toobar_base.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\IconResource\icon_00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,19 +202,34 @@
   <data name="icon_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\IconResource\icon_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="m256gule" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ImageResource\m256gule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="m256gule1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ImageResource\m256gule.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="icon_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="m256guledit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ImageResource\m256guledit.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="m256guledit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ImageResource\m256guledit2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="m256gule_toobar_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\IconResource\m256gule_toobar_base.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_27.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_29.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\IconResource\icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

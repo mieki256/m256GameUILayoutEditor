@@ -148,6 +148,16 @@
     <None Include="ImageResource\m256gule.svg" />
     <None Include="ImageResource\m256guledit.ico" />
     <None Include="ImageResource\m256guledit2.ico" />
+    <None Include="IconResource\icon_23.png" />
+    <None Include="IconResource\icon_24.png" />
+    <None Include="IconResource\icon_25.png" />
+    <None Include="IconResource\icon_26.png" />
+    <None Include="IconResource\icon_27.png" />
+    <None Include="IconResource\icon_28.png" />
+    <None Include="IconResource\icon_29.png" />
+    <None Include="IconResource\icon_30.png" />
+    <None Include="IconResource\icon_31.png" />
+    <None Include="IconResource\icon_32.png" />
     <Content Include="m256guledit.ico" />
     <Content Include="m256guledit2.ico" />
   </ItemGroup>

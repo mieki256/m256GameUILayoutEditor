@@ -78,6 +78,7 @@ namespace m256GameUILayoutEditor
             public Color fontColor;
             public Boolean selected;
             public Boolean buttonDowned;
+            public int index;
 
             // コンストラクタ
             public ObjData(int type, string name, string path, string text,
@@ -114,6 +115,7 @@ namespace m256GameUILayoutEditor
                 this.offsetY = 0;
                 this.selected = false;
                 this.buttonDowned = false;
+                this.index = 0;
             }
 
             // 表示座標を更新
@@ -155,6 +157,7 @@ namespace m256GameUILayoutEditor
 
         // 描画オブジェクトリスト
         List<ObjData> images = new List<ObjData>();
+        List<ObjData> selImgs = new List<ObjData>();
 
         public Form1()
         {
@@ -898,16 +901,6 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        // 選択されてるオブジェクト数を返す
-        private int countSelectedObject()
-        {
-            int cnt = 0;
-            foreach (ObjData o in images)
-                if (o.selected) cnt++;
-
-            return cnt;
-        }
-
         // 全オブジェクトの選択非選択を変更
         private void selectOrDeselectAll(Boolean fg)
         {
@@ -1114,7 +1107,7 @@ namespace m256GameUILayoutEditor
             leftAlignment();
         }
 
-        private void centredToolStripMenuItem_Click(object sender, EventArgs e)
+        private void centerAlignToolStripMenuItem_Click(object sender, EventArgs e)
         {
             centredAlignment();
         }
@@ -1144,7 +1137,7 @@ namespace m256GameUILayoutEditor
             topAlignment();
         }
 
-        private void centreToolStripMenuItem_Click(object sender, EventArgs e)
+        private void middleAlignToolStripMenuItem_Click(object sender, EventArgs e)
         {
             middleAlignment();
         }
@@ -1365,6 +1358,7 @@ namespace m256GameUILayoutEditor
                 string s = toolStripComboBoxGridSize.Text;
                 changeCanvasOrGridSize(s, false);
                 this.ActiveControl = null; // ComboBoxをアクティブじゃない状態にする
+     
             }
         }
 
@@ -1772,6 +1766,260 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void leftDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hDistributeLeft();
+        }
+
+        private void centerDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hDistributeCenter();
+        }
+
+        private void rightDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hDistributeRight();
+        }
+
+        private void topDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vDistributeTop();
+        }
+
+        private void middleDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vDistributeMiddle();
+        }
+
+        private void bottomDistributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vDistributeBottom();
+        }
+
+        // 左端を基準にして分布
+        private void hDistributeLeft()
+        {
+            int cnt = countSelectedObject();
+
+            // 選択オブジェクトが2つ以下なら処理をしない
+            if (cnt <= 2) return;
+
+            // x座標でソート
+            selImgs.Sort((a, b) => a.x - b.x);
+
+            int len = selImgs.Count - 1;
+            int x = images[selImgs[0].index].x;
+            int x1 = images[selImgs[len].index].x;
+            int d = (x1 - x) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+                images[selImgs[i].index].x = x + (d * i);
+
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 横中央を基準にして分布
+        private void hDistributeCenter()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // (x + (w / 2)) 座標でソート
+            selImgs.Sort((a, b) => (a.x + (a.w / 2)) - (b.x + (b.w / 2)));
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int x = o.x + (o.w / 2);
+            o = images[selImgs[len].index];
+            int x1 = o.x + (o.w / 2);
+            int d = (x1 - x) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+            {
+                o = images[selImgs[i].index];
+                o.x = (x + (d * i)) - (o.w / 2);
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 右端を基準にして分布
+        private void hDistributeRight()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // (x + w) 座標でソート
+            selImgs.Sort((a, b) => (a.x + a.w) - (b.x + b.w));
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int x = o.x + o.w;
+            o = images[selImgs[len].index];
+            int x1 = o.x + o.w;
+            int d = (x1 - x) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+            {
+                o = images[selImgs[i].index];
+                o.x = (x + (d * i)) - o.w;
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 上端を基準にして分布
+        private void vDistributeTop()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // y座標でソート
+            selImgs.Sort((a, b) => a.y - b.y);
+
+            int len = selImgs.Count - 1;
+            int y = images[selImgs[0].index].y;
+            int y1 = images[selImgs[len].index].y;
+            int d = (y1 - y) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+                images[selImgs[i].index].y = y + (d * i);
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 縦中央を基準にして分布
+        private void vDistributeMiddle()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // (y + (h / 2)) 座標でソート
+            selImgs.Sort((a, b) => (a.y + (a.h / 2)) - (b.y + (b.h / 2)));
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int y = o.y + (o.h / 2);
+            o = images[selImgs[len].index];
+            int y1 = o.y + (o.h / 2);
+            int d = (y1 - y) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+            {
+                o = images[selImgs[i].index];
+                o.y = (y + (d * i)) - (o.h / 2);
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 下端を基準にして分布
+        private void vDistributeBottom()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // (y + h) 座標でソート
+            selImgs.Sort((a, b) => (a.y + a.h) - (b.y + b.h));
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int y = o.y + o.h;
+            o = images[selImgs[len].index];
+            int y1 = o.y + o.h;
+            int d = (y1 - y) / len;
+            for (int i = 1; i < selImgs.Count - 1; i++)
+            {
+                o = images[selImgs[i].index];
+                o.y = (y + (d * i)) - o.h;
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        private void hSpacingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hDistributeSpacing();
+        }
+
+        private void vSpacingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vDistributeSpacing();
+        }
+
+        // 横方向の空白部分を等しくして分布
+        private void hDistributeSpacing()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // x座標でソート
+            selImgs.Sort((a, b) => a.x - b.x);
+
+            // オブジェクトの総横幅を求める
+            int ad = 0;
+            foreach (ObjData n in selImgs)
+                ad += n.w;
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int x = o.x;
+            o = images[selImgs[len].index];
+            int x1 = o.x + o.w;
+            int d = ((x1 - x) - ad) / len;
+            for (int i = 0; i < selImgs.Count; i++)
+            {
+                o = images[selImgs[i].index];
+                if (i > 0 && i < len) o.x = x;
+                x += (o.w + d);
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 縦方向の空白部分を等しくして分布
+        private void vDistributeSpacing()
+        {
+            int cnt = countSelectedObject();
+            if (cnt <= 2) return;
+
+            // y座標でソート
+            selImgs.Sort((a, b) => a.y - b.y);
+
+            int ad = 0;
+            foreach (ObjData n in selImgs)
+                ad += n.h;
+
+            int len = selImgs.Count - 1;
+            ObjData o = images[selImgs[0].index];
+            int y = o.y;
+            o = images[selImgs[len].index];
+            int y1 = o.y + o.h;
+            int d = ((y1 - y) - ad) / len;
+            for (int i = 0; i < selImgs.Count; i++)
+            {
+                o = images[selImgs[i].index];
+                if (i > 0 && i < len) o.y = y;
+                y += (o.h + d);
+            }
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
+        // 選択されてるオブジェクト数を返す
+        // selImages[] に選択されてるオブジェクトを登録しておく
+        private int countSelectedObject()
+        {
+            selImgs.Clear();
+            for (int i = 0; i < images.Count; i++)
+            {
+                ObjData o = images[i];
+                o.index = i;
+                if (o.selected) selImgs.Add(o);
+            }
+            return selImgs.Count;
+        }
 
     }
 }
