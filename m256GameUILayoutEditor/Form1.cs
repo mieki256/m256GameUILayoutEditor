@@ -894,15 +894,10 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-        }
-
         // PictureBox上でマウスボタンが押された
         // Shiftキー + クリックで複数選択可能にした
         //
         // TODO 中ボタンドラッグで移動できるようにしたい
-        // TODO ホイール回転でズームできるようにしたい
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             int mx = (e.X * 100 / zoomValue);
@@ -1480,7 +1475,11 @@ namespace m256GameUILayoutEditor
         private void toolStripComboBoxGridSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             ToolStripComboBox cb = toolStripComboBoxGridSize;
-            //Console.WriteLine(cb.SelectedItem.ToString());
+            if (cb.SelectedIndex >= 0)
+            {
+                string s = cb.Items[cb.SelectedIndex].ToString();
+                changeCanvasOrGridSize(s, false);
+            }
         }
 
         // グリッドサイズ ComboBoxキー入力
@@ -1491,19 +1490,19 @@ namespace m256GameUILayoutEditor
             {
                 e.Handled = true;
             }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                string s = toolStripComboBoxGridSize.Text;
+                changeCanvasOrGridSize(s, false);
+            }
         }
 
         // Grid Size 設定用 ComboBox のテキストが変更された際の処理
-        // 
-        // TODO リストから選んだ際にフォーカスを外す方法を調べないと
         private void toolStripComboBoxGridSize_TextChanged(object sender, EventArgs e)
         {
-            ToolStripComboBox cb = toolStripComboBoxGridSize;
-            int selIdx = cb.SelectedIndex;
-            string s = cb.Text;
-            int selLen = cb.SelectionLength;
-            //Console.WriteLine(string.Format("SelectedIndex = {0} ({1}) , SelectionLength = {2}", selIdx, s, selLen));
-            changeCanvasOrGridSize(s, false);
+            //ToolStripComboBox cb = toolStripComboBoxGridSize;
+            //string s = cb.Text;
+            //changeCanvasOrGridSize(s, false);
         }
 
         // キャンバスまたはグリッドサイズを変更
@@ -1553,51 +1552,6 @@ namespace m256GameUILayoutEditor
             bgGridRedraw = true;
             setStatus();
             pictureBox1.Invalidate();
-        }
-
-        // フォーム上でキーが押された場合
-        //
-        // KeyDownイベントではキー入力を取りこぼす。
-        // PreviewKeyDownイベントで処理をしたら取りこぼさなくなった。
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
-            //if (toolStripComboBoxGridSize.Focused) return;
-
-            // Canvasの中にマウスカーソルが入ってなければ以降の処理はしない
-            if (!mouseInCanvas) return;
-
-            // escキーが押されたら全オブジェクトを非選択状態にする
-            //if (e.KeyCode == Keys.Escape) selectOrDeselectAll(false);
-
-            int dx = 1;
-            int dy = 1;
-
-            // Shiftキーが押されていたら移動増分を増やす
-            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
-            {
-                dx *= gridW;
-                dy *= gridH;
-            }
-
-            // 選択されてる全オブジェクトをカーソルキーを使ってドット単位で移動
-            int x = 0;
-            int y = 0;
-            if (e.KeyCode == Keys.Up) y -= dy;
-            if (e.KeyCode == Keys.Down) y += dy;
-            if (e.KeyCode == Keys.Left) x -= dx;
-            if (e.KeyCode == Keys.Right) x += dx;
-            if (x != 0 || y != 0) moveSelectObjByKey(x, y);
-        }
-
-        // 選択されてる全オブジェクトをキー入力で移動
-        private void moveSelectObjByKey(int dx, int dy)
-        {
-            foreach (ObjData o in images)
-                if (o.selected) o.setPosition(o.x + dx, o.y + dy);
-
-            pictureBox1.Invalidate();
-            setStatusBarObjInfo();
         }
 
         private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1669,7 +1623,7 @@ namespace m256GameUILayoutEditor
         private void setZoom(int zoom)
         {
             this.zoomValue = zoom;
-            toolStripSplitButtonZoom.Text = string.Format("Zoom {0}%", zoomValue);
+            toolStripSplitButtonZoom.Text = string.Format("{0}%", zoomValue);
             pictureBox1.Invalidate();
         }
 
@@ -1712,19 +1666,144 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
+        // Form1がロードされた時に呼ばれる
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // マウスホイール回転時のイベントを追加
+            //this.MouseWheel += new MouseEventHandler(Form1_MouseWheel);
+            pictureBox1.MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
+        }
+
         // マウスが PictureBox の中に入った
+        // PictureBox にフォーカスを移すことができるらしい。
+        // これで、ツールバー上の ComboBox からフォーカスが外れるようになった
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            //panel1.BackColor = Color.FromArgb(255, 110, 110, 110);
             mouseInCanvas = true;
+            pictureBox1.Focus(); // フォーカスを移す
         }
 
         // マウスが PictureBox の外に出た
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
-            //panel1.BackColor = Color.DimGray;
             mouseInCanvas = false;
         }
+
+        private void panel1_MouseEnter(object sender, EventArgs e)
+        {
+            //panel1.Focus();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //pictureBox1.Focus();
+        }
+
+        // マウスホイール回転時
+        private void Form1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            //zoomMouseWheel(e.Delta);
+        }
+
+        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            zoomMouseWheel(e.Delta);
+        }
+
+        // マウスホイール回転によるズーム
+        // ホイール回転でズームできるようにしたかったが、
+        // Panelのスクロールバーが反応してしまうので諦めた。
+        // 代わりに Ctrl + Plus / Minus キーでズームするようにした。
+        private void zoomMouseWheel(int delta)
+        {
+            if (delta <= -120)
+            {
+                // 下に回転
+                zoomValue *= 2;
+                if (zoomValue > 800) zoomValue = 800;
+                setZoom(zoomValue);
+            }
+            else if (delta >= 120)
+            {
+                // 上に回転
+                zoomValue /= 2;
+                if (zoomValue < 25) zoomValue = 25;
+                setZoom(zoomValue);
+            }
+        }
+
+        // PictureBox上でキーが押された場合
+        // 元々はForm上で判別・処理してたが、
+        // PictureBoxにイベントを割り当てて使ったほうが良さそうなので変更した
+        private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            // escキーが押されたら全オブジェクトを非選択状態にする
+            //if (e.KeyCode == Keys.Escape) selectOrDeselectAll(false);
+
+            int dx = 1;
+            int dy = 1;
+
+            // Shiftキーが押されていたら移動増分を増やす
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                dx *= gridW;
+                dy *= gridH;
+            }
+
+            // 選択されてる全オブジェクトをカーソルキーを使ってドット単位で移動
+            int x = 0;
+            int y = 0;
+            if (e.KeyCode == Keys.Up) y -= dy;
+            if (e.KeyCode == Keys.Down) y += dy;
+            if (e.KeyCode == Keys.Left) x -= dx;
+            if (e.KeyCode == Keys.Right) x += dx;
+            if (x != 0 || y != 0)
+            {
+                moveSelectObjByKey(x, y);
+                return;
+            }
+
+            // Ctrl + Plus(semicolon) / minus キーでズーム変更
+            Boolean ctrlFg = false;
+            if ((Control.ModifierKeys & Keys.Control) == Keys.Control) ctrlFg = true;
+
+            if ((ctrlFg && e.KeyCode == Keys.Oemplus) || e.KeyCode == Keys.Add)
+            {
+                zoomValue *= 2;
+                if (zoomValue >= 800) zoomValue = 800;
+                setZoom(zoomValue);
+            }
+            else if ((ctrlFg && e.KeyCode == Keys.OemMinus) || e.KeyCode == Keys.Subtract)
+            {
+                zoomValue /= 2;
+                if (zoomValue <= 25) zoomValue = 25;
+                setZoom(zoomValue);
+            }
+        }
+
+        // フォーム上でキーが押された場合
+        //
+        // KeyDownイベントではキー入力を取りこぼす。
+        // PreviewKeyDownイベントで処理をしたら取りこぼさなくなった。
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
+            //if (toolStripComboBoxGridSize.Focused) return;
+
+            // Canvasの中にマウスカーソルが入ってなければ以降の処理はしない
+            if (!mouseInCanvas) return;
+        }
+
+        // 選択されてる全オブジェクトをキー入力で移動
+        private void moveSelectObjByKey(int dx, int dy)
+        {
+            foreach (ObjData o in images)
+                if (o.selected) o.setPosition(o.x + dx, o.y + dy);
+
+            pictureBox1.Invalidate();
+            setStatusBarObjInfo();
+        }
+
 
     }
 }
