@@ -34,14 +34,14 @@ namespace m256GameUILayoutEditor
 
         // グリッド描画用画像
         private Bitmap bgGrid = null;
-        private Boolean bgGridRedraw = true;
+        private bool bgGridRedraw = true;
 
         // マウスドラッグ処理検知用
-        private Boolean buttonLeftPressed = false;
-        private Boolean buttonMiddlePressed = false;
-        private Boolean buttonRightPressed = false;
-        private Point middleDragStartPos = new Point();
-        private Point rightDragStartPos = new Point();
+        private bool lBtnPressed = false;
+        private bool mBtnPressed = false;
+        private bool rBtnPressed = false;
+        private Point mDragStartPos = new Point();
+        private Point rDragStartPos = new Point();
 
         // スナップ有効無効
         private Boolean snapEnable = true;
@@ -57,7 +57,7 @@ namespace m256GameUILayoutEditor
         private int oldMouseX = 0;
         private int oldMouseY = 0;
 
-        private Boolean mouseInCanvas = false;
+        private Boolean inCanvas = false;
 
         // 表示オブジェクトの情報を記憶するためのクラス
         class ObjData
@@ -124,7 +124,7 @@ namespace m256GameUILayoutEditor
             }
 
             // マウスドラッグで表示座標を更新
-            public void changePosition(int x, int y, Boolean snap, int gw, int gh)
+            public void changePos(int x, int y, Boolean snap, int gw, int gh)
             {
                 this.x = x + this.offsetX;
                 this.y = y + this.offsetY;
@@ -898,193 +898,6 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        // PictureBox上でマウスボタンが押された時の処理。
-        // Shiftキー + クリックで複数選択可能にした。
-        // 中ボタンドラッグでスクロールできるようにした。
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    buttonLeftPressed = true;
-
-                    int mx = (e.X * 100 / zoomValue);
-                    int my = (e.Y * 100 / zoomValue);
-
-                    // シフトキーが押されてたら複数選択モード
-                    Boolean multiSelect = ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) ? true : false;
-
-                    // マウス座標からのオフセット値を記録
-                    foreach (ObjData o in images)
-                        o.setOffset(mx, my);
-
-                    if (multiSelect)
-                    {
-                        // 複数選択モード
-                        for (int i = images.Count - 1; i >= 0; i--)
-                        {
-                            ObjData o = images[i];
-                            if (checkHit(o, mx, my))
-                            {
-                                o.selected = !o.selected;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // シングル選択モード
-
-                        // 選択済みのオブジェクトがクリックされているのかを調べる
-                        // その場合、ユーザは複数まとめてドラッグ移動を望んでる可能性がある
-                        Boolean pfg = false;
-                        if (countSelectedObject() > 1)
-                        {
-                            foreach (ObjData o in images)
-                            {
-                                if (o.selected && checkHit(o, mx, my))
-                                {
-                                    pfg = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (!pfg) selectOneObj(mx, my); // 一つだけ選択
-                    }
-
-                    pictureBox1.Invalidate();
-                    setStatusBarObjInfo();
-
-                    oldMouseX = mx;
-                    oldMouseY = my;
-                    break;
-
-                case MouseButtons.Middle:
-                    buttonMiddlePressed = true;
-                    middleDragStartPos = e.Location;
-                    break;
-
-                case MouseButtons.None:
-                    break;
-
-                case MouseButtons.Right:
-                    buttonRightPressed = true;
-                    rightDragStartPos = e.Location;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        // オブジェクト範囲内に座標があるか調べる
-        private Boolean checkHit(ObjData o, int mx, int my)
-        {
-            int x0 = o.x;
-            int y0 = o.y;
-            int w = o.w;
-            int h = o.h;
-            int x1 = x0 + w;
-            int y1 = y0 + h;
-            return (x0 <= mx && mx <= x1 && y0 <= my && my <= y1);
-        }
-
-        // オブジェクトを一つだけ選択
-        private void selectOneObj(int mx, int my)
-        {
-            Boolean fg = false;
-            for (int i = images.Count - 1; i >= 0; i--)
-            {
-                ObjData o = images[i];
-                o.selected = false;
-                if (!fg && checkHit(o, mx, my))
-                {
-                    o.selected = true;
-                    fg = true;
-                }
-            }
-        }
-
-        // PictureBox 上でマウスがドラッグされた
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            // 左ボタンが押されてる
-            if (buttonLeftPressed)
-            {
-                int mx = (e.X * 100 / zoomValue);
-                int my = (e.Y * 100 / zoomValue);
-
-                //Console.WriteLine("{0},{1}", mx, my);
-
-                foreach (ObjData o in images)
-                    if (o.selected) o.changePosition(mx, my, snapEnable, gridW, gridH);
-
-                pictureBox1.Invalidate();
-                setStatusBarObjInfo();
-            }
-
-            // 中ボタンが押されてるのでスクロール
-            if (buttonMiddlePressed)
-            {
-                int dx = e.Location.X - middleDragStartPos.X;
-                int dy = e.Location.Y - middleDragStartPos.Y;
-                int nx = -panel1.AutoScrollPosition.X - dx;
-                int ny = -panel1.AutoScrollPosition.Y - dy;
-                panel1.AutoScrollPosition = new Point(nx, ny);
-            }
-
-            // 右ボタンが押されてるのでスクロール
-            if (buttonRightPressed)
-            {
-                int dx = e.Location.X - rightDragStartPos.X;
-                int dy = e.Location.Y - rightDragStartPos.Y;
-                int nx = -panel1.AutoScrollPosition.X - dx;
-                int ny = -panel1.AutoScrollPosition.Y - dy;
-                panel1.AutoScrollPosition = new Point(nx, ny);
-            }
-        }
-
-        // PictureBox 上でマウスボタンが離された
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    int mx = (e.X * 100 / zoomValue);
-                    int my = (e.Y * 100 / zoomValue);
-
-                    Boolean multiSelect = ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) ? true : false;
-
-                    if (oldMouseX == mx && oldMouseY == my)
-                    {
-                        // 同位置でクリックされていた。
-                        // ドラッグ移動ではなく選択のつもりだったはず。
-                        // オブジェクトを一つだけ選択し直す
-                        if (!multiSelect) selectOneObj(mx, my);
-                    }
-
-                    pictureBox1.Invalidate();
-                    setStatusBarObjInfo();
-                    buttonLeftPressed = false;
-                    break;
-
-                case MouseButtons.Middle:
-                    buttonMiddlePressed = false;
-                    break;
-
-                case MouseButtons.None:
-                    break;
-
-                case MouseButtons.Right:
-                    buttonRightPressed = false;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
         // 選択されてるオブジェクト数を返す
         private int countSelectedObject()
         {
@@ -1722,31 +1535,34 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        // Form1がロードされた時に呼ばれる
-        private void Form1_Load(object sender, EventArgs e)
+        // フォーム上でキーが押された場合。
+        // KeyDownイベントではキー入力を取りこぼす。
+        // PreviewKeyDownイベントで処理をしたら取りこぼさなくなった。
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-        }
+            // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
+            //if (toolStripComboBoxGridSize.Focused) return;
 
-        // マウスが PictureBox の中に入った
-        // PictureBox にフォーカスを移すことができるらしい。
-        // これで、ツールバー上の ComboBox からフォーカスが外れるようになった
-        private void pictureBox1_MouseEnter(object sender, EventArgs e)
-        {
-            mouseInCanvas = true;
-            pictureBox1.Focus(); // フォーカスを移す
-        }
+            // Ctrl + Plus(semicolon) / minus キーでズーム変更
+            Boolean ctrlFg = false;
+            if ((Control.ModifierKeys & Keys.Control) == Keys.Control) ctrlFg = true;
 
-        // マウスが PictureBox の外に出た
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-            mouseInCanvas = false;
-        }
+            if ((ctrlFg && e.KeyCode == Keys.Oemplus) || e.KeyCode == Keys.Add)
+            {
+                zoomValue *= 2;
+                if (zoomValue >= 800) zoomValue = 800;
+                setZoom(zoomValue);
+            }
+            else if ((ctrlFg && e.KeyCode == Keys.OemMinus) || e.KeyCode == Keys.Subtract)
+            {
+                zoomValue /= 2;
+                if (zoomValue <= 25) zoomValue = 25;
+                setZoom(zoomValue);
+            }
 
-        // PictureBox上でキーが押された場合
-        // 元々はForm上で判別・処理してたが、
-        // PictureBoxにイベントを割り当てて使ったほうが良さそうなので変更した
-        private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
+            // Canvas内にマウスカーソルが入ってなければ以降の処理はしない
+            if (!inCanvas) return;
+
             // escキーが押されたら全オブジェクトを非選択状態にする
             //if (e.KeyCode == Keys.Escape) selectOrDeselectAll(false);
 
@@ -1772,36 +1588,6 @@ namespace m256GameUILayoutEditor
                 moveSelectObjByKey(x, y);
                 return;
             }
-
-            // Ctrl + Plus(semicolon) / minus キーでズーム変更
-            Boolean ctrlFg = false;
-            if ((Control.ModifierKeys & Keys.Control) == Keys.Control) ctrlFg = true;
-
-            if ((ctrlFg && e.KeyCode == Keys.Oemplus) || e.KeyCode == Keys.Add)
-            {
-                zoomValue *= 2;
-                if (zoomValue >= 800) zoomValue = 800;
-                setZoom(zoomValue);
-            }
-            else if ((ctrlFg && e.KeyCode == Keys.OemMinus) || e.KeyCode == Keys.Subtract)
-            {
-                zoomValue /= 2;
-                if (zoomValue <= 25) zoomValue = 25;
-                setZoom(zoomValue);
-            }
-        }
-
-        // フォーム上でキーが押された場合
-        //
-        // KeyDownイベントではキー入力を取りこぼす。
-        // PreviewKeyDownイベントで処理をしたら取りこぼさなくなった。
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            // Grid や Canvas の設定ボックスにフォーカスがあるなら何もせずに戻る
-            //if (toolStripComboBoxGridSize.Focused) return;
-
-            // Canvasの中にマウスカーソルが入ってなければ以降の処理はしない
-            if (!mouseInCanvas) return;
         }
 
         // 選択されてる全オブジェクトをキー入力で移動
@@ -1812,6 +1598,168 @@ namespace m256GameUILayoutEditor
 
             pictureBox1.Invalidate();
             setStatusBarObjInfo();
+        }
+
+        // PictureBox上でマウスボタンが押された時の処理。
+        // Shiftキー + クリックで複数選択可能にした。
+        // 中ボタンドラッグでスクロールできるようにした。
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    lBtnPressed = true;
+                    int mx = (e.X * 100 / zoomValue);
+                    int my = (e.Y * 100 / zoomValue);
+
+                    // マウス座標からのオフセット値を記録
+                    foreach (ObjData o in images) o.setOffset(mx, my);
+
+                    if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+                        // シフトキーが押されてたら複数選択モード
+                        for (int i = images.Count - 1; i >= 0; i--)
+                        {
+                            ObjData o = images[i];
+                            if (checkHit(o, mx, my))
+                            {
+                                o.selected = !o.selected;
+                                break;
+                            }
+                        }
+                    else
+                    {
+                        // シングル選択モード
+
+                        // 選択済みのオブジェクトがクリックされているのかを調べる
+                        // その場合、ユーザは複数まとめてドラッグ移動を望んでる可能性がある
+                        bool pfg = false;
+                        if (countSelectedObject() > 1)
+                            foreach (ObjData o in images)
+                                if (o.selected && checkHit(o, mx, my))
+                                {
+                                    pfg = true;
+                                    break;
+                                }
+
+                        if (!pfg) selectOneObj(mx, my); // 一つだけ選択
+                    }
+                    pictureBox1.Invalidate();
+                    setStatusBarObjInfo();
+                    oldMouseX = mx;
+                    oldMouseY = my;
+                    break;
+                case MouseButtons.Middle:
+                    mBtnPressed = true;
+                    mDragStartPos = e.Location;
+                    break;
+                case MouseButtons.Right:
+                    rBtnPressed = true;
+                    rDragStartPos = e.Location;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // オブジェクト範囲内に座標があるか調べる
+        private Boolean checkHit(ObjData o, int mx, int my)
+        {
+            int x0 = o.x;
+            int y0 = o.y;
+            int x1 = x0 + o.w;
+            int y1 = y0 + o.h;
+            return (x0 <= mx && mx <= x1 && y0 <= my && my <= y1);
+        }
+
+        // オブジェクトを一つだけ選択
+        private void selectOneObj(int mx, int my)
+        {
+            bool fg = false;
+            for (int i = images.Count - 1; i >= 0; i--)
+            {
+                ObjData o = images[i];
+                o.selected = false;
+                if (!fg && checkHit(o, mx, my))
+                {
+                    o.selected = true;
+                    fg = true;
+                }
+            }
+        }
+
+        // PictureBox 上でマウスがドラッグされた
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    if (lBtnPressed)
+                    {
+                        int mx = (e.X * 100 / zoomValue);
+                        int my = (e.Y * 100 / zoomValue);
+                        foreach (ObjData o in images)
+                            if (o.selected) o.changePos(mx, my, snapEnable, gridW, gridH);
+
+                        pictureBox1.Invalidate();
+                        setStatusBarObjInfo();
+                    }
+                    break;
+                case MouseButtons.Middle:
+                    if (mBtnPressed)
+                    {
+                        panel1.AutoScrollPosition = new Point(
+                            -panel1.AutoScrollPosition.X - (e.Location.X - mDragStartPos.X),
+                            -panel1.AutoScrollPosition.Y - (e.Location.Y - mDragStartPos.Y));
+                    }
+                    break;
+                case MouseButtons.Right:
+                    if (rBtnPressed)
+                    {
+                        panel1.AutoScrollPosition = new Point(
+                            -panel1.AutoScrollPosition.X - (e.Location.X - rDragStartPos.X),
+                            -panel1.AutoScrollPosition.Y - (e.Location.Y - rDragStartPos.Y));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // PictureBox 上でマウスボタンが離された
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    int mx = (e.X * 100 / zoomValue);
+                    int my = (e.Y * 100 / zoomValue);
+                    bool mSel = ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) ? true : false;
+                    // 同位置ClickならDrag移動ではなく選択のつもりのはず。objを一つだけselect
+                    if (oldMouseX == mx && oldMouseY == my && !mSel) selectOneObj(mx, my);
+                    pictureBox1.Invalidate();
+                    setStatusBarObjInfo();
+                    lBtnPressed = false;
+                    break;
+                case MouseButtons.Middle:
+                    mBtnPressed = false;
+                    break;
+                case MouseButtons.Right:
+                    rBtnPressed = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            inCanvas = true;
+            //pictureBox1.Focus();
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            inCanvas = false;
         }
 
 
