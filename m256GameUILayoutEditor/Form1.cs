@@ -243,11 +243,6 @@ namespace m256GameUILayoutEditor
         {
             if (appliName == "")
             {
-                //var assm = Assembly.GetExecutingAssembly();
-                //var name = assm.GetName();
-                //appliName = name.Name.ToString();
-
-                //Console.WriteLine("{0} {1}", Application.ProductName, Application.ProductVersion);
                 appliName = Application.ProductName.ToString();
             }
             return appliName;
@@ -258,23 +253,6 @@ namespace m256GameUILayoutEditor
         {
             if (myVer == "")
             {
-                //System.Diagnostics.FileVersionInfo ver =
-                //    System.Diagnostics.FileVersionInfo.GetVersionInfo(
-                //    System.Reflection.Assembly.GetExecutingAssembly().Location);
-                //myVer = ver.ToString();
-
-                //var assm = Assembly.GetExecutingAssembly();
-                //var name = assm.GetName();
-                //Console.WriteLine("{0} {1}", name.Name, name.Version);
-                //appliName = name.Name.ToString();
-                //myVer = name.Version.ToString();
-
-                //var assm = Assembly.GetExecutingAssembly();
-                //var path = (new Uri(assm.CodeBase)).LocalPath;
-                //var versionInfo = FileVersionInfo.GetVersionInfo(path);
-                //Console.WriteLine("{0} {1}", versionInfo.FileName, versionInfo.FileVersion);
-                //myVer = versionInfo.FileVersion.ToString();
-
                 myVer = Application.ProductVersion.ToString();
             }
             return myVer;
@@ -1766,39 +1744,52 @@ namespace m256GameUILayoutEditor
             pictureBox1.Invalidate();
         }
 
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // 左端を基準にして分布
         private void leftDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             hDistributeLeft();
         }
 
+        // 横中央を基準にして分布
         private void centerDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             hDistributeCenter();
         }
 
+        // 右端を基準にして分布
         private void rightDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             hDistributeRight();
         }
 
+        // 上端を基準にして分布
         private void topDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             vDistributeTop();
         }
 
+        // 縦中央を基準にして分布
         private void middleDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             vDistributeMiddle();
         }
 
+        // 下端を基準にして分布
         private void bottomDistributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             vDistributeBottom();
+        }
+
+        // 横方向の空白が等しくなるように分布
+        private void hSpacingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hDistributeSpacing();
+        }
+
+        // 縦方向の空白が等しくなるように分布
+        private void vSpacingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vDistributeSpacing();
         }
 
         // 左端を基準にして分布
@@ -1938,16 +1929,6 @@ namespace m256GameUILayoutEditor
             setStatusBarObjInfo();
         }
 
-        private void hSpacingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            hDistributeSpacing();
-        }
-
-        private void vSpacingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            vDistributeSpacing();
-        }
-
         // 横方向の空白部分を等しくして分布
         private void hDistributeSpacing()
         {
@@ -2019,6 +2000,13 @@ namespace m256GameUILayoutEditor
                 if (o.selected) selImgs.Add(o);
             }
             return selImgs.Count;
+        }
+
+        // Undo機能
+        // TODO Undoの実装
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
