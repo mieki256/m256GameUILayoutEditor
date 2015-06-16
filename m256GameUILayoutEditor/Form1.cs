@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace m256GameUILayoutEditor
 {
@@ -560,10 +560,6 @@ namespace m256GameUILayoutEditor
             relativePath = relativePath.Replace("%25", "%");
             relativePath = relativePath.Replace('/', '\\');
 
-            //Console.WriteLine(dir);
-            //Console.WriteLine(path);
-            //Console.WriteLine(" -> " + relativePath);
-
             return relativePath;
         }
 
@@ -586,10 +582,6 @@ namespace m256GameUILayoutEditor
             string absolutePath = u2.LocalPath;
 
             absolutePath = absolutePath.Replace("%25", "%");
-
-            //Console.WriteLine(dir);
-            //Console.WriteLine(path);
-            //Console.WriteLine(" -> " + absolutePath);
 
             return absolutePath;
         }
@@ -1463,33 +1455,23 @@ namespace m256GameUILayoutEditor
         private void changeCanvasOrGridSize(string s, Boolean selectCanvas)
         {
             // 入力テキストが適切なフォーマットなのか調べていく
-            if (s == string.Empty)
-            {
-                //Console.WriteLine("text is empty");
-                return;
-            }
 
+            // 入力テキストが空なら処理しない
+            if (s == string.Empty) return;
+
+            // "100x200" や"100,200"の形になってないなら処理しない
             char[] delimiterChars = { ' ', ',', 'x', ':', '\t' };
             string[] ss = s.Split(delimiterChars);
-            if (ss.Length != 2)
-            {
-                //Console.WriteLine("text split Length != 2");
-                return;
-            }
+            if (ss.Length != 2) return;
 
-            if (ss[0] == string.Empty || ss[1] == string.Empty)
-            {
-                //Console.WriteLine("w or h is empty");
-                return;
-            }
+            // w か h の文字列が空なら処理しない
+            if (ss[0] == string.Empty || ss[1] == string.Empty) return;
 
             int w = int.Parse(ss[0]);
             int h = int.Parse(ss[1]);
-            if (w <= 3 || w > 15360 || h <= 3 || h > 15360)
-            {
-                //Console.WriteLine(string.Format("{0}x{1} is Illegal Value", w, h));
-                return;
-            }
+
+            // 異常な値なら処理しない
+            if (w <= 3 || w > 15360 || h <= 3 || h > 15360) return;
 
             // キャンバスサイズまたはグリッドサイズを変更
             if (selectCanvas)
