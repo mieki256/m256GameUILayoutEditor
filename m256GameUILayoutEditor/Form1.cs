@@ -157,6 +157,7 @@ namespace m256GameUILayoutEditor
 
         // 描画オブジェクトリスト
         List<ObjData> images = new List<ObjData>();
+
         List<ObjData> selImgs = new List<ObjData>();
 
         public Form1()
@@ -231,10 +232,7 @@ namespace m256GameUILayoutEditor
         private void clearObjData()
         {
             if (images.Count <= 0) return;
-            foreach (ObjData o in images)
-            {
-                o.disposeImage();
-            }
+            images.ForEach(o => o.disposeImage());
             images.RemoveRange(0, images.Count);
         }
 
@@ -242,9 +240,7 @@ namespace m256GameUILayoutEditor
         private string getAppliName()
         {
             if (appliName == "")
-            {
                 appliName = Application.ProductName.ToString();
-            }
             return appliName;
         }
 
@@ -252,9 +248,7 @@ namespace m256GameUILayoutEditor
         private string getMyVer()
         {
             if (myVer == "")
-            {
                 myVer = Application.ProductVersion.ToString();
-            }
             return myVer;
         }
 
@@ -339,9 +333,7 @@ namespace m256GameUILayoutEditor
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("Error : File not found.");
-                foreach (string s in errPaths)
-                    sb.AppendLine(s);
-
+                errPaths.ForEach(s => sb.AppendLine(s));
                 MessageBox.Show(sb.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -576,9 +568,8 @@ namespace m256GameUILayoutEditor
             }
 
             System.Text.Encoding enc = new System.Text.UTF8Encoding(false);
-            System.IO.StreamWriter sw = new System.IO.StreamWriter(filepath, false, enc);
-            foreach (string s in lines)
-                sw.WriteLine(s);
+            StreamWriter sw = new StreamWriter(filepath, false, enc);
+            lines.ForEach(s => sw.WriteLine(s));
             sw.Close();
 
             showSaveMessage(System.IO.Path.GetFileName(filepath));
@@ -882,9 +873,7 @@ namespace m256GameUILayoutEditor
         // 全オブジェクトの選択非選択を変更
         private void selectOrDeselectAll(Boolean fg)
         {
-            foreach (ObjData o in images)
-                o.selected = fg;
-
+            images.ForEach(o => o.selected = fg);
             pictureBox1.Invalidate();
             setStatusBarObjInfo();
         }
@@ -958,6 +947,7 @@ namespace m256GameUILayoutEditor
         {
             if (countSelectedObject() == 0) return;
             List<ObjData> selList = new List<ObjData>();
+
             foreach (ObjData o in images)
                 if (o.selected) selList.Add(o);
 
@@ -1014,34 +1004,17 @@ namespace m256GameUILayoutEditor
         private void bringObjectForwards()
         {
             if (countSelectedObject() == 0) return;
-            List<ObjData> selList = new List<ObjData>();
-            int n = 0;
-            for (int i = 0; i < images.Count; i++)
-            {
-                ObjData o = images[i];
-                if (o.selected)
-                {
-                    n = i;
-                    selList.Add(o);
-                }
-            }
+
+            int n = selImgs[selImgs.Count - 1].index;
 
             images.RemoveAll(checkSelected);
 
-            int nn = n - selList.Count + 2;
+            int nn = n - selImgs.Count + 2;
             if (nn >= images.Count)
-            {
-                foreach (ObjData o in selList)
-                    images.Add(o);
-            }
+                selImgs.ForEach(o => images.Add(o));
             else
-            {
-                for (int i = selList.Count - 1; i >= 0; i--)
-                {
-                    ObjData o = selList[i];
-                    images.Insert(nn, o);
-                }
-            }
+                for (int i = selImgs.Count - 1; i >= 0; i--)
+                    images.Insert(nn, selImgs[i]);
 
             pictureBox1.Invalidate();
         }
@@ -1050,27 +1023,19 @@ namespace m256GameUILayoutEditor
         private void sendObjectBackwards()
         {
             if (countSelectedObject() == 0) return;
-            List<ObjData> selList = new List<ObjData>();
+
             int n = images.Count - 1;
-            for (int i = 0; i < images.Count; i++)
+            foreach (ObjData o in selImgs)
             {
-                ObjData o = images[i];
-                if (o.selected)
-                {
-                    if (i < n) n = i;
-                    selList.Add(o);
-                }
+                if (o.index < n) n = o.index;
             }
 
             images.RemoveAll(checkSelected);
 
             int nn = n - 1;
             if (nn < 0) nn = 0;
-            for (int i = selList.Count - 1; i >= 0; i--)
-            {
-                ObjData o = selList[i];
-                images.Insert(nn, o);
-            }
+            for (int i = selImgs.Count - 1; i >= 0; i--)
+                images.Insert(nn, selImgs[i]);
 
             pictureBox1.Invalidate();
         }
@@ -1940,19 +1905,22 @@ namespace m256GameUILayoutEditor
 
             // オブジェクトの総横幅を求める
             int ad = 0;
-            foreach (ObjData n in selImgs)
-                ad += n.w;
+            foreach (ObjData n in selImgs) ad += n.w;
 
             int len = selImgs.Count - 1;
-            ObjData o = images[selImgs[0].index];
-            int x = o.x;
-            o = images[selImgs[len].index];
-            int x1 = o.x + o.w;
-            int d = ((x1 - x) - ad) / len;
+
+            ObjData o0 = images[selImgs[0].index];
+            float x = o0.x;
+
+            ObjData o1 = images[selImgs[len].index];
+            float x1 = o1.x + o1.w;
+
+            float d = ((x1 - x) - ad) / len;
+
             for (int i = 0; i < selImgs.Count; i++)
             {
-                o = images[selImgs[i].index];
-                if (i > 0 && i < len) o.x = x;
+                ObjData o = images[selImgs[i].index];
+                if (i > 0 && i < len) o.x = (int)x;
                 x += (o.w + d);
             }
             pictureBox1.Invalidate();
@@ -1969,19 +1937,21 @@ namespace m256GameUILayoutEditor
             selImgs.Sort((a, b) => a.y - b.y);
 
             int ad = 0;
-            foreach (ObjData n in selImgs)
-                ad += n.h;
+            foreach (ObjData n in selImgs) ad += n.h;
 
             int len = selImgs.Count - 1;
-            ObjData o = images[selImgs[0].index];
-            int y = o.y;
-            o = images[selImgs[len].index];
-            int y1 = o.y + o.h;
-            int d = ((y1 - y) - ad) / len;
+            ObjData o0 = images[selImgs[0].index];
+            float y = o0.y;
+
+            ObjData o1 = images[selImgs[len].index];
+            float y1 = o1.y + o1.h;
+
+            float d = ((y1 - y) - ad) / len;
+
             for (int i = 0; i < selImgs.Count; i++)
             {
-                o = images[selImgs[i].index];
-                if (i > 0 && i < len) o.y = y;
+                ObjData o = images[selImgs[i].index];
+                if (i > 0 && i < len) o.y = (int)y;
                 y += (o.h + d);
             }
             pictureBox1.Invalidate();
