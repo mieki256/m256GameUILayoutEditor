@@ -728,7 +728,11 @@ namespace m256GameUILayoutEditor
                 string str = f.textStr;
                 int x = 0;
                 int y = 0;
-                ObjData o = new ObjData(1, str, "", str,
+
+                saveSnapShot();
+
+                string name = getObjName(str);
+                ObjData o = new ObjData(1, name, "", str,
                     x, y, this.fontName, this.fontSize, this.fontColor);
                 imgs.Add(o);
 
@@ -755,13 +759,15 @@ namespace m256GameUILayoutEditor
         // 画像ファイルを画面に追加
         private void addImageFiles(string[] files)
         {
+            saveSnapShot();
+
             int x = 0;
             int y = 0;
             foreach (string path in files)
             {
                 if (checkImageFormat(path))
                 {
-                    string name = Path.GetFileName(path);
+                    string name = getObjName(Path.GetFileName(path));
                     ObjData o = new ObjData(0, name, path, "", x, y, "", 0, Color.Blue);
                     imgs.Add(o);
                     x += 16;
@@ -773,10 +779,10 @@ namespace m256GameUILayoutEditor
         }
 
         // 画像ファイルをストリームで開く(ファイルのロック回避)
-        public static System.Drawing.Image CreateImage(string filename)
+        public static Image CreateImage(string filename)
         {
-            System.IO.FileStream fs = new System.IO.FileStream(filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-            System.Drawing.Image img = System.Drawing.Image.FromStream(fs);
+            FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            Image img = Image.FromStream(fs);
             fs.Close();
             return img;
         }
@@ -794,6 +800,32 @@ namespace m256GameUILayoutEditor
                     string fmtExt = s.Substring(s.IndexOf('.'));
                     if (fmtExt.ToUpper() == ext.ToUpper()) return true;
                 }
+            }
+            return false;
+        }
+
+        // オブジェクトにつける name を求める
+        private string getObjName(string s)
+        {
+            string ns = s.Trim().Replace(' ', '_').ToLower();
+            if (!existsObjName(ns)) return ns;
+
+            int cnt = 1;
+            string ss = string.Format("{0}_{1}", ns, cnt);
+            while (existsObjName(ss))
+            {
+                cnt += 1;
+                ss = string.Format("{0}_{1}", ns, cnt);
+            }
+            return ss;
+        }
+
+        // 既に存在してるオブジェクトの中に同じ name があるか調べる
+        private bool existsObjName(string s)
+        {
+            foreach (ObjData o in imgs)
+            {
+                if (o.name.Equals(s, StringComparison.Ordinal)) return true;
             }
             return false;
         }
@@ -981,9 +1013,10 @@ namespace m256GameUILayoutEditor
             if (n == 1)
             {
                 // オブジェクトが一つだけ選択されてる場合
-                foreach (ObjData o in imgs)
-                    if (o.selected)
-                        toolStripStatusObjInfo.Text = String.Format("x,y={0},{1}  w,h={2},{3}  [{4}]", o.x, o.y, o.w, o.h, o.name);
+                ObjData o = selImgs[0];
+                string s = string.Format("x,y={0},{1}  w,h={2},{3}  [{4}]",
+                    o.x, o.y, o.w, o.h, o.name);
+                toolStripStatusObjInfo.Text = s;
             }
             else if (n == 0)
                 toolStripStatusObjInfo.Text = "--------";
@@ -1556,7 +1589,7 @@ namespace m256GameUILayoutEditor
         // 選択オブジェクトを削除
         private void deleteSelectObj()
         {
-            clearUndoData();
+            saveSnapShot();
             imgs.RemoveAll(o => o.selected);
             pictureBox1.Invalidate();
         }
@@ -2073,6 +2106,11 @@ namespace m256GameUILayoutEditor
             loadSnapShot();
         }
 
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        {
+            loadSnapShot();
+        }
+
         // Undo用情報を記録
         private void saveSnapShot()
         {
@@ -2083,6 +2121,7 @@ namespace m256GameUILayoutEditor
                 o.save(dst);
                 saveImgs.Add(dst);
             }
+            setStatusUndo();
         }
 
         // Undo用情報を元にオブジェクトの状態を復帰
@@ -2122,7 +2161,10 @@ namespace m256GameUILayoutEditor
         // Undo可・不可をメニューバーに反映
         private void setStatusUndo()
         {
-            undoToolStripMenuItem.Enabled = undoEnabled();
+            bool fg = undoEnabled();
+            undoToolStripMenuItem.Enabled = fg;
+            toolStripButtonUndo.Enabled = fg;
         }
+
     }
 }

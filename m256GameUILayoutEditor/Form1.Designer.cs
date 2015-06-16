@@ -129,6 +129,7 @@
             this.toolStripButtonSetCanvasSize = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripButtonUndo = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -680,6 +681,7 @@
             this.toolStripBtnSaveAs,
             this.toolStripBtnExport,
             this.toolStripSeparator1,
+            this.toolStripButtonUndo,
             this.toolStripBtnAddText,
             this.toolStripBtnAddImage,
             this.toolStripButtonDelete,
@@ -1068,6 +1070,16 @@
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
+            // toolStripButtonUndo
+            // 
+            this.toolStripButtonUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUndo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUndo.Image")));
+            this.toolStripButtonUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUndo.Name = "toolStripButtonUndo";
+            this.toolStripButtonUndo.Size = new System.Drawing.Size(23, 23);
+            this.toolStripButtonUndo.Text = "Undo";
+            this.toolStripButtonUndo.Click += new System.EventHandler(this.toolStripButtonUndo_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -1203,6 +1215,7 @@
         private System.Windows.Forms.ToolStripMenuItem middleDistributeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bottomDistributeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vSpacingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonUndo;
     }
 }
 
