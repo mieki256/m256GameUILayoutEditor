@@ -777,7 +777,7 @@ namespace m256GameUILayoutEditor
 
                     g.DrawString(o.text, fnt, fb, px, py, sf);
 
-                    var sz = g.MeasureString(o.text, fnt, pictureBox1.Width, sf);
+                    SizeF sz = g.MeasureString(o.text, fnt, pictureBox1.Width * 3, sf);
                     o.w = ((int)sz.Width) * 100 / zoomValue;
                     o.h = ((int)sz.Height) * 100 / zoomValue;
 
