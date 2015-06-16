@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace m256GameUILayoutEditor
 {
@@ -251,7 +252,7 @@ namespace m256GameUILayoutEditor
         private List<ObjData> imgs = new List<ObjData>();
         private List<ObjData> selImgs = new List<ObjData>();
 
-        private List<ObjSaveData> saveImgs = new List<ObjSaveData>();
+        private List<List<ObjSaveData>> saveImgs = new List<List<ObjSaveData>>();
 
         public Form1()
         {
@@ -314,7 +315,6 @@ namespace m256GameUILayoutEditor
         // 新規レイアウト作成
         private void newLayout()
         {
-            clearUndoData();
             clearObjData();
             docTitle = INIT_TITLE;
             setFormTitle();
@@ -1071,44 +1071,6 @@ namespace m256GameUILayoutEditor
             sendObjectToBack();
         }
 
-        // 選択されたオブジェクトを最前面に移動
-        private void bringObjectToFront()
-        {
-            if (countSelectedObject() == 0) return;
-            List<ObjData> selList = new List<ObjData>();
-
-            foreach (ObjData o in imgs)
-                if (o.selected) selList.Add(o);
-
-            imgs.RemoveAll(checkSelected); // 選択オブジェクトを一度削除
-
-            foreach (ObjData o in selList)
-                imgs.Add(o);
-
-            pictureBox1.Invalidate();
-        }
-
-        // 選択されたオブジェクトを最背面に移動
-        private void sendObjectToBack()
-        {
-            if (countSelectedObject() == 0) return;
-            List<ObjData> selList = new List<ObjData>();
-            foreach (ObjData o in imgs)
-                if (o.selected) selList.Add(o);
-
-            imgs.RemoveAll(checkSelected); // 選択オブジェクトを一度削除
-
-            foreach (ObjData o in selList)
-                imgs.Insert(0, o);
-
-            pictureBox1.Invalidate();
-        }
-
-        static Boolean checkSelected(ObjData o)
-        {
-            return o.selected == true;
-        }
-
         private void bringToForwardsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bringObjectForwards();
@@ -1129,10 +1091,53 @@ namespace m256GameUILayoutEditor
             sendObjectBackwards();
         }
 
+        // 選択されたオブジェクトを最前面に移動
+        private void bringObjectToFront()
+        {
+            if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
+            List<ObjData> selList = new List<ObjData>();
+
+            foreach (ObjData o in imgs)
+                if (o.selected) selList.Add(o);
+
+            imgs.RemoveAll(checkSelected); // 選択オブジェクトを一度削除
+
+            foreach (ObjData o in selList)
+                imgs.Add(o);
+
+            pictureBox1.Invalidate();
+        }
+
+        // 選択されたオブジェクトを最背面に移動
+        private void sendObjectToBack()
+        {
+            if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
+            List<ObjData> selList = new List<ObjData>();
+            foreach (ObjData o in imgs)
+                if (o.selected) selList.Add(o);
+
+            imgs.RemoveAll(checkSelected); // 選択オブジェクトを一度削除
+
+            foreach (ObjData o in selList)
+                imgs.Insert(0, o);
+
+            pictureBox1.Invalidate();
+        }
+
+        static Boolean checkSelected(ObjData o)
+        {
+            return o.selected == true;
+        }
+
         // 選択オブジェクトを一つ前面に移動
         private void bringObjectForwards()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
 
             int n = selImgs[selImgs.Count - 1].index;
 
@@ -1152,6 +1157,7 @@ namespace m256GameUILayoutEditor
         private void sendObjectBackwards()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
 
             int n = imgs.Count - 1;
             foreach (ObjData o in selImgs)
@@ -1231,6 +1237,8 @@ namespace m256GameUILayoutEditor
         private void leftAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 // 選択オブジェクトが一つだけならキャンバスを基準に揃える
@@ -1254,6 +1262,8 @@ namespace m256GameUILayoutEditor
         private void centredAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 foreach (ObjData o in imgs)
@@ -1283,6 +1293,8 @@ namespace m256GameUILayoutEditor
         private void rightAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 foreach (ObjData o in imgs)
@@ -1304,6 +1316,8 @@ namespace m256GameUILayoutEditor
         private void topAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 foreach (ObjData o in imgs)
@@ -1325,6 +1339,8 @@ namespace m256GameUILayoutEditor
         private void middleAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 foreach (ObjData o in imgs)
@@ -1354,6 +1370,8 @@ namespace m256GameUILayoutEditor
         private void bottomAlignment()
         {
             if (countSelectedObject() == 0) return;
+            saveSnapShot();
+
             if (countSelectedObject() == 1)
             {
                 foreach (ObjData o in imgs)
@@ -1395,6 +1413,8 @@ namespace m256GameUILayoutEditor
 
             if (f.ShowDialog(this) == DialogResult.OK)
             {
+                saveSnapShot();
+
                 string s = string.Format("{0}x{1}", f.canvasWidth, f.canvasHeight);
                 changeCanvasOrGridSize(s, true);
                 canvasColor = f.canvasColor;
@@ -1428,7 +1448,6 @@ namespace m256GameUILayoutEditor
                 string s = toolStripComboBoxGridSize.Text;
                 changeCanvasOrGridSize(s, false);
                 this.ActiveControl = null; // ComboBoxをアクティブじゃない状態にする
-
             }
         }
 
@@ -1886,10 +1905,10 @@ namespace m256GameUILayoutEditor
         // 左端を基準にして分布
         private void hDistributeLeft()
         {
-            int cnt = countSelectedObject();
-
             // 選択オブジェクトが2つ以下なら処理をしない
+            int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // x座標でソート
             selImgs.Sort((a, b) => a.x - b.x);
@@ -1910,6 +1929,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // (x + (w / 2)) 座標でソート
             selImgs.Sort((a, b) => (a.x + (a.w / 2)) - (b.x + (b.w / 2)));
@@ -1934,6 +1954,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // (x + w) 座標でソート
             selImgs.Sort((a, b) => (a.x + a.w) - (b.x + b.w));
@@ -1958,6 +1979,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // y座標でソート
             selImgs.Sort((a, b) => a.y - b.y);
@@ -1977,6 +1999,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // (y + (h / 2)) 座標でソート
             selImgs.Sort((a, b) => (a.y + (a.h / 2)) - (b.y + (b.h / 2)));
@@ -2001,6 +2024,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // (y + h) 座標でソート
             selImgs.Sort((a, b) => (a.y + a.h) - (b.y + b.h));
@@ -2025,6 +2049,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // x座標でソート
             selImgs.Sort((a, b) => a.x - b.x);
@@ -2059,6 +2084,7 @@ namespace m256GameUILayoutEditor
         {
             int cnt = countSelectedObject();
             if (cnt <= 2) return;
+            saveSnapShot();
 
             // y座標でソート
             selImgs.Sort((a, b) => a.y - b.y);
@@ -2114,13 +2140,14 @@ namespace m256GameUILayoutEditor
         // Undo用情報を記録
         private void saveSnapShot()
         {
-            clearUndoData();
+            List<ObjSaveData> saveData = new List<ObjSaveData>();
             foreach (ObjData o in imgs)
             {
                 ObjSaveData dst = new ObjSaveData();
                 o.save(dst);
-                saveImgs.Add(dst);
+                saveData.Add(dst);
             }
+            saveImgs.Add(saveData);
             setStatusUndo();
         }
 
@@ -2129,14 +2156,13 @@ namespace m256GameUILayoutEditor
         {
             if (undoEnabled())
             {
-                saveImgs.Sort((a, b) => a.index - b.index);
+                List<ObjSaveData> src = saveImgs.Last();
+                src.Sort((a, b) => a.index - b.index);
                 imgs.Clear();
-                foreach (ObjSaveData o in saveImgs)
-                {
-                    imgs.Add(new ObjData(o));
-                }
+                src.ForEach(o => imgs.Add(new ObjData(o)));
+                saveImgs.RemoveAt(saveImgs.Count - 1);
+
                 pictureBox1.Invalidate();
-                clearUndoData();
                 setStatus();
                 setStatusBarObjInfo();
             }
