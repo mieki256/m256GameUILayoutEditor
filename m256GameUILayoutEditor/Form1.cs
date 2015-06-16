@@ -62,23 +62,28 @@ namespace m256GameUILayoutEditor
         // 表示オブジェクトの情報を記憶するためのクラス
         class ObjData
         {
+
             public int type; // 0ならImage, 1ならText
+
             public string name;
             public string path;
+            public Bitmap bitmap;
+
             public string text;
             public string fontName;
             public int fontSize;
+            public Color fontColor;
+
             public int x;
             public int y;
             public int w;
             public int h;
-            public int offsetX;
-            public int offsetY;
-            public Bitmap bitmap;
-            public Color fontColor;
-            public Boolean selected;
-            public Boolean buttonDowned;
+
             public int index;
+            public bool selected;
+
+            private int offsetX;
+            private int offsetY;
 
             // コンストラクタ
             public ObjData(int type, string name, string path, string text,
@@ -96,11 +101,11 @@ namespace m256GameUILayoutEditor
                 this.fontSize = fontSize;
                 this.fontColor = fontColor;
 
+                this.selected = false;
+                this.index = 0;
+
                 this.offsetX = 0;
                 this.offsetY = 0;
-                this.selected = false;
-                this.buttonDowned = false;
-                this.index = 0;
 
                 if (this.type == 0)
                 {
@@ -118,6 +123,13 @@ namespace m256GameUILayoutEditor
                     this.w = fontSize * this.text.Length;
                     this.h = fontSize;
                 }
+            }
+
+            public ObjData(ObjSaveData o)
+            {
+                this.load(o);
+                this.offsetX = 0;
+                this.offsetY = 0;
             }
 
             // 表示座標を更新
@@ -155,12 +167,91 @@ namespace m256GameUILayoutEditor
             {
                 if (this.bitmap != null) this.bitmap.Dispose();
             }
+
+            public void save(ObjSaveData o)
+            {
+                o.type = this.type;
+                o.name = this.name;
+                o.path = this.path;
+                o.bitmap = this.bitmap;
+                o.text = this.text;
+                o.fontName = this.fontName;
+                o.fontSize = this.fontSize;
+                o.fontColor = this.fontColor;
+                o.x = this.x;
+                o.y = this.y;
+                o.w = this.w;
+                o.h = this.h;
+                o.index = this.index;
+                o.selected = this.selected;
+            }
+
+            public void load(ObjSaveData o)
+            {
+                this.type = o.type;
+                this.name = o.name;
+                this.path = o.path;
+                this.bitmap = o.bitmap;
+                this.text = o.text;
+                this.fontName = o.fontName;
+                this.fontSize = o.fontSize;
+                this.fontColor = o.fontColor;
+                this.x = o.x;
+                this.y = o.y;
+                this.w = o.w;
+                this.h = o.h;
+                this.index = o.index;
+                this.selected = o.selected;
+            }
+        }
+
+        // オブジェクトデータのUndo記録用
+        class ObjSaveData
+        {
+            public int type; // 0ならImage, 1ならText
+
+            public string name;
+            public string path;
+            public Bitmap bitmap;
+
+            public string text;
+            public string fontName;
+            public int fontSize;
+            public Color fontColor;
+
+            public int x;
+            public int y;
+            public int w;
+            public int h;
+
+            public int index;
+            public bool selected;
+
+            // コンストラクタ
+            public ObjSaveData()
+            {
+                this.type = 0;
+                this.name = "";
+                this.path = "";
+                this.bitmap = null;
+                this.text = "";
+                this.fontName = "";
+                this.fontSize = 0;
+                this.fontColor = Color.Black;
+                this.x = 0;
+                this.y = 0;
+                this.w = 0;
+                this.h = 0;
+                this.index = -1;
+                this.selected = false;
+            }
         }
 
         // 描画オブジェクトリスト
-        List<ObjData> imgs = new List<ObjData>();
+        private List<ObjData> imgs = new List<ObjData>();
+        private List<ObjData> selImgs = new List<ObjData>();
 
-        List<ObjData> selImgs = new List<ObjData>();
+        private List<ObjSaveData> saveImgs = new List<ObjSaveData>();
 
         public Form1()
         {
@@ -223,6 +314,7 @@ namespace m256GameUILayoutEditor
         // 新規レイアウト作成
         private void newLayout()
         {
+            clearUndoData();
             clearObjData();
             docTitle = INIT_TITLE;
             setFormTitle();
@@ -234,8 +326,8 @@ namespace m256GameUILayoutEditor
         private void clearObjData()
         {
             if (imgs.Count <= 0) return;
-            imgs.ForEach(o => o.disposeImage());
             imgs.RemoveRange(0, imgs.Count);
+            clearUndoData();
         }
 
         // 自分自身のアプリ名を返す
@@ -720,6 +812,8 @@ namespace m256GameUILayoutEditor
             Boolean fg = snapToGridToolStripMenuItem.Checked;
             toolStripBtnSnapGrid.Checked = fg;
             snapEnable = fg;
+
+            setStatusUndo();
         }
 
         // PictureBox描画
@@ -1028,9 +1122,7 @@ namespace m256GameUILayoutEditor
 
             int n = imgs.Count - 1;
             foreach (ObjData o in selImgs)
-            {
                 if (o.index < n) n = o.index;
-            }
 
             imgs.RemoveAll(checkSelected);
 
@@ -1303,7 +1395,7 @@ namespace m256GameUILayoutEditor
                 string s = toolStripComboBoxGridSize.Text;
                 changeCanvasOrGridSize(s, false);
                 this.ActiveControl = null; // ComboBoxをアクティブじゃない状態にする
-     
+
             }
         }
 
@@ -1461,18 +1553,11 @@ namespace m256GameUILayoutEditor
             deleteSelectObj();
         }
 
-        // 選択オブジェクトを削除。画像解放も行う
+        // 選択オブジェクトを削除
         private void deleteSelectObj()
         {
-            for (int i = imgs.Count - 1; i >= 0; i--)
-            {
-                ObjData o = imgs[i];
-                if (o.selected)
-                {
-                    o.disposeImage();
-                    imgs.Remove(imgs[i]);
-                }
-            }
+            clearUndoData();
+            imgs.RemoveAll(o => o.selected);
             pictureBox1.Invalidate();
         }
 
@@ -1550,6 +1635,8 @@ namespace m256GameUILayoutEditor
             {
                 case MouseButtons.Left:
                     lBtnPressed = true;
+                    saveSnapShot();
+
                     int mx = (e.X * 100 / zoomValue);
                     int my = (e.Y * 100 / zoomValue);
 
@@ -1676,9 +1763,13 @@ namespace m256GameUILayoutEditor
                     int my = (e.Y * 100 / zoomValue);
                     bool mSel = ((Control.ModifierKeys & Keys.Shift) == Keys.Shift) ? true : false;
                     // 同位置ClickならDrag移動ではなく選択のつもりのはず。objを一つだけselect
-                    if (oldMouseX == mx && oldMouseY == my && !mSel) selectOneObj(mx, my);
+                    if (oldMouseX == mx && oldMouseY == my && !mSel)
+                    {
+                        selectOneObj(mx, my);
+                    }
                     pictureBox1.Invalidate();
                     setStatusBarObjInfo();
+                    setStatusUndo();
                     lBtnPressed = false;
                     break;
                 case MouseButtons.Middle:
@@ -1905,6 +1996,7 @@ namespace m256GameUILayoutEditor
             // x座標でソート
             selImgs.Sort((a, b) => a.x - b.x);
 
+
             // オブジェクトの総横幅を求める
             int ad = 0;
             foreach (ObjData n in selImgs) ad += n.w;
@@ -1978,8 +2070,59 @@ namespace m256GameUILayoutEditor
         // TODO Undoの実装
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadSnapShot();
         }
 
+        // Undo用情報を記録
+        private void saveSnapShot()
+        {
+            clearUndoData();
+            foreach (ObjData o in imgs)
+            {
+                ObjSaveData dst = new ObjSaveData();
+                o.save(dst);
+                saveImgs.Add(dst);
+            }
+        }
+
+        // Undo用情報を元にオブジェクトの状態を復帰
+        private void loadSnapShot()
+        {
+            if (undoEnabled())
+            {
+                saveImgs.Sort((a, b) => a.index - b.index);
+                imgs.Clear();
+                foreach (ObjSaveData o in saveImgs)
+                {
+                    imgs.Add(new ObjData(o));
+                }
+                pictureBox1.Invalidate();
+                clearUndoData();
+                setStatus();
+                setStatusBarObjInfo();
+            }
+            else
+                MessageBox.Show("No data available.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            setStatusUndo();
+        }
+
+        // Undoができるか否かを返す
+        private bool undoEnabled()
+        {
+            return (saveImgs.Count > 0) ? true : false;
+        }
+
+        // Undo用データの消去
+        private void clearUndoData()
+        {
+            saveImgs.Clear();
+        }
+
+        // Undo可・不可をメニューバーに反映
+        private void setStatusUndo()
+        {
+            undoToolStripMenuItem.Enabled = undoEnabled();
+        }
     }
 }

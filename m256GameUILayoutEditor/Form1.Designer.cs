@@ -236,7 +236,6 @@
             // 
             // undoToolStripMenuItem
             // 
-            this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
@@ -346,7 +345,7 @@
             // 
             this.leftToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("leftToolStripMenuItem.Image")));
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.leftToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.leftToolStripMenuItem.Text = "&Left";
             this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
             // 
@@ -354,7 +353,7 @@
             // 
             this.centerAlignToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("centerAlignToolStripMenuItem.Image")));
             this.centerAlignToolStripMenuItem.Name = "centerAlignToolStripMenuItem";
-            this.centerAlignToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.centerAlignToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.centerAlignToolStripMenuItem.Text = "&Center";
             this.centerAlignToolStripMenuItem.Click += new System.EventHandler(this.centerAlignToolStripMenuItem_Click);
             // 
@@ -362,7 +361,7 @@
             // 
             this.rightToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rightToolStripMenuItem.Image")));
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.rightToolStripMenuItem.Text = "&Right";
             this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
             // 
@@ -370,7 +369,7 @@
             // 
             this.topToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("topToolStripMenuItem.Image")));
             this.topToolStripMenuItem.Name = "topToolStripMenuItem";
-            this.topToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.topToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.topToolStripMenuItem.Text = "&Top";
             this.topToolStripMenuItem.Click += new System.EventHandler(this.topToolStripMenuItem_Click);
             // 
@@ -378,7 +377,7 @@
             // 
             this.middleAlignToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("middleAlignToolStripMenuItem.Image")));
             this.middleAlignToolStripMenuItem.Name = "middleAlignToolStripMenuItem";
-            this.middleAlignToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.middleAlignToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.middleAlignToolStripMenuItem.Text = "&Middle";
             this.middleAlignToolStripMenuItem.Click += new System.EventHandler(this.middleAlignToolStripMenuItem_Click);
             // 
@@ -386,7 +385,7 @@
             // 
             this.bottomToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bottomToolStripMenuItem.Image")));
             this.bottomToolStripMenuItem.Name = "bottomToolStripMenuItem";
-            this.bottomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bottomToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.bottomToolStripMenuItem.Text = "&Bottom";
             this.bottomToolStripMenuItem.Click += new System.EventHandler(this.bottomToolStripMenuItem_Click);
             // 
@@ -410,7 +409,7 @@
             // 
             this.leftDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("leftDistributeToolStripMenuItem.Image")));
             this.leftDistributeToolStripMenuItem.Name = "leftDistributeToolStripMenuItem";
-            this.leftDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.leftDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.leftDistributeToolStripMenuItem.Text = "&Left";
             this.leftDistributeToolStripMenuItem.Click += new System.EventHandler(this.leftDistributeToolStripMenuItem_Click);
             // 
@@ -418,7 +417,7 @@
             // 
             this.centerDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("centerDistributeToolStripMenuItem.Image")));
             this.centerDistributeToolStripMenuItem.Name = "centerDistributeToolStripMenuItem";
-            this.centerDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.centerDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.centerDistributeToolStripMenuItem.Text = "&Center";
             this.centerDistributeToolStripMenuItem.Click += new System.EventHandler(this.centerDistributeToolStripMenuItem_Click);
             // 
@@ -426,7 +425,7 @@
             // 
             this.rightDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rightDistributeToolStripMenuItem.Image")));
             this.rightDistributeToolStripMenuItem.Name = "rightDistributeToolStripMenuItem";
-            this.rightDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rightDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.rightDistributeToolStripMenuItem.Text = "&Right";
             this.rightDistributeToolStripMenuItem.Click += new System.EventHandler(this.rightDistributeToolStripMenuItem_Click);
             // 
@@ -434,20 +433,20 @@
             // 
             this.hSpacingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("hSpacingToolStripMenuItem.Image")));
             this.hSpacingToolStripMenuItem.Name = "hSpacingToolStripMenuItem";
-            this.hSpacingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hSpacingToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.hSpacingToolStripMenuItem.Text = "&H Spacing";
             this.hSpacingToolStripMenuItem.Click += new System.EventHandler(this.hSpacingToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(131, 6);
             // 
             // topDistributeToolStripMenuItem
             // 
             this.topDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("topDistributeToolStripMenuItem.Image")));
             this.topDistributeToolStripMenuItem.Name = "topDistributeToolStripMenuItem";
-            this.topDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.topDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.topDistributeToolStripMenuItem.Text = "&Top";
             this.topDistributeToolStripMenuItem.Click += new System.EventHandler(this.topDistributeToolStripMenuItem_Click);
             // 
@@ -455,7 +454,7 @@
             // 
             this.middleDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("middleDistributeToolStripMenuItem.Image")));
             this.middleDistributeToolStripMenuItem.Name = "middleDistributeToolStripMenuItem";
-            this.middleDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.middleDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.middleDistributeToolStripMenuItem.Text = "&Middle";
             this.middleDistributeToolStripMenuItem.Click += new System.EventHandler(this.middleDistributeToolStripMenuItem_Click);
             // 
@@ -463,7 +462,7 @@
             // 
             this.bottomDistributeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bottomDistributeToolStripMenuItem.Image")));
             this.bottomDistributeToolStripMenuItem.Name = "bottomDistributeToolStripMenuItem";
-            this.bottomDistributeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bottomDistributeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.bottomDistributeToolStripMenuItem.Text = "&Bottom";
             this.bottomDistributeToolStripMenuItem.Click += new System.EventHandler(this.bottomDistributeToolStripMenuItem_Click);
             // 
@@ -471,7 +470,7 @@
             // 
             this.vSpacingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vSpacingToolStripMenuItem.Image")));
             this.vSpacingToolStripMenuItem.Name = "vSpacingToolStripMenuItem";
-            this.vSpacingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vSpacingToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.vSpacingToolStripMenuItem.Text = "&V Spacing";
             this.vSpacingToolStripMenuItem.Click += new System.EventHandler(this.vSpacingToolStripMenuItem_Click);
             // 
