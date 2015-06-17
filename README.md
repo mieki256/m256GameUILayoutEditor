@@ -6,7 +6,7 @@ Windows用のフリーソフトです。
 
 ## Screenshot
 
-![画像タイトル](https://github.com/mieki256/m256GameUILayoutEditor/blob/master/screenshot_20150617_093524.png?raw=true)
+![Screenshot](screenshot/screenshot_20150617_093524.png?raw=true)
 
 
 ## 使い方
